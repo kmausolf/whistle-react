@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-class LoginForm extends React.Component {
+class RegisterForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {email: '', pass: ''};
@@ -27,7 +27,6 @@ class LoginForm extends React.Component {
                     <input type="text" value={this.state.email} onChange={this.handleChange} /><br />
                     Password: <br />
                     <input type="password" value={this.state.pass} onChange={this.handleChange} /><br />
-                    Don't have an account?  <Link to="/register">Register</Link>
                 </label>
                 <br />
                 <Link 
@@ -36,7 +35,7 @@ class LoginForm extends React.Component {
                     to="/ownermain"
                     style={buttonStyle}
                     >
-                    Login as Owner
+                    Register an Owner Account
                 </Link>
                 <br />
                 <Link 
@@ -45,11 +44,11 @@ class LoginForm extends React.Component {
                     to="/ctmain"
                     style={buttonStyle}
                     >
-                    Login as Caretaker
+                    Register a Caretaker Account
                 </Link>
             </form>
         );
     }
 }
 
-export default LoginForm;
+export default RegisterForm;

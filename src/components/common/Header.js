@@ -4,12 +4,16 @@ import LoadingDots from './LoadingDots';
 
 const Header = ({loading}) => {
   return (
-    <nav>
+    <nav className="text-center">
       <IndexLink to="/" activeClassName="active">Login</IndexLink>
       {" | "}
       <Link to="/ownermain" activeClassName="active">Main Page</Link>
       {" | "}
-      <Link to="/about" activeClassName="active">About</Link>
+      <Link to="/messaging" activeClassName="active">Messaging</Link>
+      {" | "}
+      <Link to="/profile" activeClassName="active">Profile</Link>
+      {" | "}
+      <Link to="/settings" activeClassName="active">Settings</Link>
       {loading && <LoadingDots interval={100} dots={20}/>}
     </nav>
   );

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-class OwnerMain extends React.Component {
+class Profile extends React.Component {
   render() {
     return (
-        <p>Owner Main</p>
+        <p>Profile</p>
     );
   }
 }
 
-export default OwnerMain;
+export default Profile;
