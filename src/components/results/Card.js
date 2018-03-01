@@ -26,6 +26,7 @@ const Card = (props) => {
                 <div><h4> {props.title} </h4> </div>
                 <div><p> {props.bio} </p> </div> 
                 </center></div> 
+                <br />
         </div>
     );
 };
