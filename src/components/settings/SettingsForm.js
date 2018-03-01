@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-class Settings extends React.Component {
+class SettingsForm extends React.Component {
   render() {
     return (
     <form>
@@ -36,4 +36,4 @@ class Settings extends React.Component {
   }
 }
 
-export default Settings;
+export default SettingsForm;
