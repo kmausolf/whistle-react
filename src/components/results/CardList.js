@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import Card from "./Card"
+import Card from "./Card";
 
 const CardList = (props) => {
     const cardStyle = {
@@ -20,6 +20,10 @@ const CardList = (props) => {
             )}
         </div>
     );
+};
+
+CardList.propTypes = {
+    cards: React.PropTypes.array.isRequired
 };
 
 
