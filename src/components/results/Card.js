@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import ContactToggle from './ContactToggle';
 
 //A single card with a user profile pic and blurb
 const Card = (props) => {
@@ -25,7 +26,7 @@ const Card = (props) => {
                 <div> <h2> {props.name}  </h2></div>
                 <div><h4> {props.title} </h4> </div>
                 <div><p> {props.bio} </p> </div> 
-                <button type="button">Contact</button>
+                <ContactToggle />
                 </center></div> 
                 <br />
         </div>
