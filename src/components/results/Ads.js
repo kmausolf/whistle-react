@@ -15,12 +15,14 @@ class Ads extends React.Component {
             cards: [
                
                 {
+                    key: 0,
                     name: "Amanda Fitzgerald",
                     avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
                     title: "Animal Caretaker",
                     bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
                 },
                 {
+                    key: 1,
                      name: "Gregory Brzęczyszczykiewicz",
                     avatar_url: "https://i.imgur.com/LbDUJDk.jpg",
                     title: "Professional Animal Handler",
@@ -33,12 +35,14 @@ class Ads extends React.Component {
                     
                 },
                 {
+                    key: 2,
                      name: "Pablo Herrara",
                     avatar_url: "https://i.imgur.com/qaxb5aS.jpg",
                     title: "Dog Walker",
                     bio: "Hello. I love dogs. I am available for walking five days a week from 3pm - 7pm."
                 },
                 {
+                    key: 3,
                      name: "Anita Salads",
                     avatar_url: "https://i.imgur.com/7qG7Nc7.jpg",
                     title: "Fitness Enthusiast and Animal Lover",
@@ -46,6 +50,7 @@ class Ads extends React.Component {
                     "Preferrably large dogs so I do not accidentally kick them. I am extremely fast and powerful, I hope your pet can keep up."
                 },
                 {
+                    key: 4,
                      name: "Dylan",
                     avatar_url: " https://i.imgur.com/OmYpJPd.jpg",
                     title: "Young Entrepreneur",
