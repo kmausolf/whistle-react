@@ -12,7 +12,7 @@ class SearchTypeForm extends React.Component {
        <Link 
           className="btn btn-primary"
           role="button"
-          to="/ownermain"
+          to="/results_walkers"
           style={buttonStyle}
         >
        Find me a Walker!
@@ -21,7 +21,7 @@ class SearchTypeForm extends React.Component {
        <Link 
           className="btn btn-primary"
           role="button"
-          to="/ownermain"
+          to="/results_sitters"
           style={buttonStyle}
         >
        Find me a Sitter!

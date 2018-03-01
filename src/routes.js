@@ -8,6 +8,8 @@ import CtMain from './components/ctmain/CtMain';
 import Messaging from './components/messaging/Messaging';
 import Settings from './components/settings/Settings';
 import Profile from './components/profile/Profile';
+import Results_Walkers from './components/results/Results_Walkers';
+import Results_Sitters from './components/results/Results_Sitters';
 
 
 export default (
@@ -19,5 +21,7 @@ export default (
     <Route path="messaging" component={Messaging} />
     <Route path="settings" component={Settings} />
     <Route path="profile" component={Profile} />
+    <Route path="results_walkers" component={Results_Walkers} />
+    <Route path="results_sitters" component={Results_Sitters} />
   </Route>
 );
