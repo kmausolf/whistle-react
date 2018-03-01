@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-
+import Ads from './Ads';
 class Results_Walkers extends React.Component {
   
   render() {
@@ -22,7 +22,7 @@ class Results_Walkers extends React.Component {
         
           <form>
           Search for a specific name, location...
-            <button style={searchButtonStyle} type="submit">Search</button>
+            <button style={searchButtonStyle} type="submit" onClick={Ads.loadCards} >Search</button>
             <input style={searchStyle} type="text" placeholder="Enter a tag..." />
             
           </form> 

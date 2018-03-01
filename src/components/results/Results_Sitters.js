@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-
+import Ads from './Ads';
 class Results_Sitters extends React.Component {
   
 
@@ -28,6 +28,7 @@ class Results_Sitters extends React.Component {
             
           </form> 
         </div>
+        <Ads />
       </div>
     );
   }
