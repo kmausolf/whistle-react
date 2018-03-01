@@ -17,7 +17,7 @@ const Card = (props) => {
         width: "100",
         height: "100", 
         float: 'left'
-      }
+      };
     return (
         <div style={cardStyle}>
             <img src={props.avatar_url} style={imgStyle} />
@@ -29,6 +29,13 @@ const Card = (props) => {
                 <br />
         </div>
     );
+};
+
+Card.propTypes = {
+    avatar_url: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    bio: React.PropTypes.string.isRequired
 };
 
 export default Card;
