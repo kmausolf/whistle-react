@@ -4,13 +4,7 @@ import Ads from './Ads';
 class Results_Walkers extends React.Component {
   
   render() {
-    const searchStyle = {
-      float: "right",
-      width: "35%"
-    };
-    const searchButtonStyle = {
-      float: "right"
-    };
+   
     return (
       <div>
         <div className="jumbotron">
@@ -20,12 +14,7 @@ class Results_Walkers extends React.Component {
 
         <div>
         
-          <form>
-          Search for a specific name, location...
-            <button style={searchButtonStyle} type="submit" onClick={Ads.loadCards} >Search</button>
-            <input style={searchStyle} type="text" placeholder="Enter a tag..." />
-            
-          </form> 
+         <Ads />
         </div>
       </div>
     );

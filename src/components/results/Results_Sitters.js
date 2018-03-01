@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import Ads from './Ads';
 class Results_Sitters extends React.Component {
-  
+ 
 
   render() {
     const searchStyle = {
@@ -20,15 +20,9 @@ class Results_Sitters extends React.Component {
         </div>
 
         <div>
-        
-          <form>
-          Search for a specific name, location...
-            <button style={searchButtonStyle} type="submit">Search</button>
-            <input style={searchStyle} type="text" placeholder="Enter a tag..." />
-            
-          </form> 
+       
+        <Ads /> 
         </div>
-        <Ads />
       </div>
     );
   }

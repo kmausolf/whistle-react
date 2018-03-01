@@ -29,10 +29,22 @@ class Ads extends React.Component {
 
 
     render(){
-        
+        const searchStyle = {
+            float: "right",
+            width: "35%"
+          };
+          const searchButtonStyle = {
+            float: "right"
+          };
         return(
             <div>
-                <button onClick={this.loadCards} type="button">Load</button>
+                 <form>
+          Search for a specific name, location...
+            <button style= {searchButtonStyle} onClick={this.loadCards}  type="button">Search</button>
+            <input style={searchStyle} type="text" placeholder="Enter a tag..." />
+            
+          </form> 
+                
                 <CardList cards={this.state.cards} />
 
             </div>
