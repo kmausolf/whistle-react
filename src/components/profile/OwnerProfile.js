@@ -4,14 +4,17 @@ import PetList from "./PetList";
 class OwnerProfile extends React.Component {
   constructor(props){
     super(props);
-    this.state = { pets: [] };
+
+    this.state = { pets: [{key:1, msg:"hey"}] };
 
     this.addPet = this.addPet.bind(this);
 }
 
 addPet() {
   this.setState((prevState) => ({
-    pets: prevState.pets.push({"key":1,"msg":"hey"})
+    //pets: prevState.pets.push({"key":1,"msg":"hey"})
+    pets: [{"key":2,"msg":"grr"}]
+
   }));
 }
 

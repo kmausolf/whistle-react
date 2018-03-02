@@ -6,9 +6,10 @@ import PetCard from "./PetCard";
 const PetList = (props) => {
     return (
         <div>
-            {props.cards.map(card =>
-                <div key={card.key} style={cardStyle}>
-                    <PetCard {...card} />
+
+            {props.pets.map(pet =>
+                <div key={pet.key}>
+                    <PetCard {...pet} />
                 </div>
             )}
         </div>
