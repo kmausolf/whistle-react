@@ -1,7 +1,19 @@
 import React from 'react';
 import {Link} from 'react-router';
-
+import PetList from "./PetList";
 class OwnerProfile extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = { pets: [{"key":1,"msg":"hey"}] };
+    this.addPet = this.addPet.bind(this);
+}
+addPet() {
+  this.setState((prevState) => ({
+    //pets: prevState.pets.push({"key":1,"msg":"hey"})
+    pets: [{"key":2,"msg":"grr"}]
+  }));
+}
+
   render() {
     const borderStyle = {
       padding:'7px', 
@@ -29,6 +41,7 @@ class OwnerProfile extends React.Component {
       </div>
       <div style={borderStyle}>
                 <h2><center> My Pets </center> </h2>
+                <PetList pets={this.state.pets} />
       </div>
       <div style={borderStyle}>
       <form> <center>
@@ -49,7 +62,7 @@ class OwnerProfile extends React.Component {
 				Walk Frequency: <input type="text" id="walk-frequency-times" placeholder="Number of times"/>
 				per <input type="text" id="walk-frequency-days" placeholder="days"/><br/>
                 Any other notes: <br /> <textarea rows="5" cols="50" id="pet-bio" placeholder="Enter Bio here..."></textarea> <br />
-				<button onclick="createPet()">Add Another Pet</button>
+				<button onClick={this.addPet}>Add Another Pet</button>
        </center> </form>        
       </div>
     </div>
