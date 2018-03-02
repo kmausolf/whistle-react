@@ -4,12 +4,7 @@ import Ads from './Ads';
 class Results_Walkers extends React.Component {
   
   render() {
-    const imgStyle = {
-      borderRadius: "10px",
-      width: "100px",
-      height: "100px", 
-      float: "left"
-    };
+    
     return (
       <div>
         <div className="jumbotron">

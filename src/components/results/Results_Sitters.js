@@ -5,13 +5,7 @@ class Results_Sitters extends React.Component {
  
 
   render() {
-    const searchStyle = {
-      float: "right",
-      width: "35%"
-    };
-    const searchButtonStyle = {
-      float: "right"
-    };
+   
     return (
       <div>
         <div className="jumbotron">

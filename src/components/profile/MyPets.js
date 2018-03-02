@@ -6,18 +6,31 @@ class MyPets extends React.Component {
     constructor(props){
         super(props);
     
-        this.state = { pets: [{key:1, msg:"hey"}] };
-    
+        this.state = { pets: [] };
+        
         this.addPet = this.addPet.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+
     }
     
     addPet() {
+      
+      var newArray = this.state.pets.slice();
+      var newKey = newArray.length + 1;
+      newArray.push(
+          {key:newKey,
+           name: this.state.name})
+
       this.setState((prevState) => ({
-        //pets: prevState.pets.push({"key":1,"msg":"hey"})
-        pets: [{"key":2,msg:"grr"}]
+       pets:newArray
     
       }));
     }
+    
+    handleNameChange(event) {
+        this.setState({name: event.target.value});
+      }
+    
 
     render(){
         const borderStyle = {
@@ -44,7 +57,7 @@ class MyPets extends React.Component {
                             <option value="cat">Cat</option>
                             <option value="bird">Bird</option>
                         </select><br/>
-                        Name: <input type="text" id="pet-name" placeholder="Name"/><br/>
+                        Name: <input type="text" id="pet-name" placeholder="Name" value={this.state.name} onChange={this.handleNameChange}/><br/>
                         Breed: <input type="text" id="pet-breed" placeholder="Breed"/><br/>
                         Pet insurance No.: <input type="text" id="pet-insurance" placeholder="Pet insurance No"/><br/>
                         Medicines: <input type="text" id="medicines" placeholder="Medicines"/><br/>
