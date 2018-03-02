@@ -5,7 +5,17 @@ const PetCard = (props) => {
     return (
         <div>
            
-                <div> <h2> {props.name}  </h2></div>
+                <div> 
+                    <h4> {props.name} </h4> <br />
+                    <h4> {props.breed} </h4> <br />
+                    <h4> {props.insuranceNo} </h4> <br />
+                    <h4> {props.meds} </h4> <br />
+                    <h4> {props.medConds} </h4> <br />
+                    <h4> {props.vetNo} </h4> <br />
+                
+                
+                
+                </div>
         </div>
     );
 }
