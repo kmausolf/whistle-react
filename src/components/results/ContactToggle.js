@@ -6,23 +6,38 @@ class ContactToggle extends React.Component {
     constructor(props){
         super(props);
         this.state = { showing: false};
-        this.showToggle = this.showToggle.bind(this);
+        this.showTextArea = this.showTextArea.bind(this);
+        this.hideTextArea = this.hideTextArea.bind(this);
     }
     
-    showToggle(){
-        this.setState({showing: !this.showing});
+    showTextArea(){
+        this.setState({showing: true});
+    }
+
+    hideTextArea(){
+        this.setState({showing: false});
     }
 
     render() {
         const { showing } = this.state;
+
+        let button = null;
+        let contactBox = null;
+
+        if(!showing){
+            button = <button onClick={this.showTextArea}>Contact</button>;
+            contactBox = null;
+        }
+        else{
+            button = <button onClick={this.hideTextArea}>Send</button>;
+            contactBox = <textarea rows="5" cols="50"></textarea>;
+        }
+
       return (
         <div>
-            
-            {showing 
-                ? <textarea rows="5" cols="50"> </textarea> 
-                : null
-            } <br />
-            <button onClick={this.showToggle}> Contact</button>
+            {contactBox}
+            <br />
+            {button}
         </div>  
       );
     }
