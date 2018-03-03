@@ -5,7 +5,7 @@ class MyPets extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = { pets: [] };
+        this.state = { pets: [], species: "dog", pic:"http://www.dog-find.com/img/default-image-450.jpg"};
         this.addPet = this.addPet.bind(this);
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -15,6 +15,7 @@ class MyPets extends React.Component {
         this.handleMedCondsChange = this.handleMedCondsChange.bind(this);
         this.handleVetNoChange = this.handleVetNoChange.bind(this);
         this.handleBioChange = this.handleBioChange.bind(this);
+        this.handleDropdown = this.handleDropdown.bind(this);
 
     }
     
@@ -30,12 +31,15 @@ class MyPets extends React.Component {
            meds: this.state.meds,
            medConds: this.state.medConds,
            vetNo: this.state.vetNo,
-           bio: this.state.bio})
+           bio: this.state.bio,
+           species:this.state.species,
+           pic: this.state.pic})
 
       this.setState((prevState) => ({
        pets:newArray
     
       }));
+     
     }
 
     handleNameChange(event) {
@@ -59,6 +63,25 @@ class MyPets extends React.Component {
     handleBioChange(event) {
         this.setState({bio: event.target.value});
     }
+    handleDropdown(event) {
+        let spc = event.target.value;
+        
+        let img = "https://club-pet.net/commerce/wp-content/uploads/sites/3/2016/05/pet-default.jpg"; //default pic
+        
+        if(spc === "dog"){
+            img = "http://www.dog-find.com/img/default-image-450.jpg";
+        
+        
+        } else if (spc===("cat")){
+            img = "https://i.pinimg.com/originals/81/0a/44/810a44be6ad030363e29cdc37aee1e94.jpg";
+        } else if (spc===("bird")){
+            img="http://files.kollabora.com/sites/default/files/styles/250x250-square/public/493448/files/643_useablelogo.jpg?itok=hE9z8hX1";
+        }
+        
+         this.setState({pic: img});
+         
+        
+    }
 
     render(){
         const borderStyle = {
@@ -80,7 +103,7 @@ class MyPets extends React.Component {
                         <h2>Add a new pet...</h2>
 
                         Pet Species:
-                        <select id="species-selector">
+                        <select  onChange={this.handleDropdown}>
                             <option value="dog">Dog</option>
                             <option value="cat">Cat</option>
                             <option value="bird">Bird</option>
