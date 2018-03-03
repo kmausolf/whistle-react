@@ -21,6 +21,7 @@ class MyPets extends React.Component {
     addPet() {
       var newArray = this.state.pets.slice();
       var newKey = newArray.length + 1;
+    
       newArray.push(
           {key:newKey,
            name: this.state.name,
