@@ -7,13 +7,15 @@ class MyPets extends React.Component {
         super(props);
         this.state = { pets: [] };
         this.addPet = this.addPet.bind(this);
-        
+
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleBreedChange = this.handleBreedChange.bind(this);
         this.handleInsuranceNoChange = this.handleInsuranceNoChange.bind(this);
         this.handleMedsChange = this.handleMedsChange.bind(this);
         this.handleMedCondsChange = this.handleMedCondsChange.bind(this);
         this.handleVetNoChange = this.handleVetNoChange.bind(this);
+        this.handleBioChange = this.handleBioChange.bind(this);
+
     }
     
     addPet() {
@@ -26,7 +28,8 @@ class MyPets extends React.Component {
            insuranceNo: this.state.insuranceNo,
            meds: this.state.meds,
            medConds: this.state.medConds,
-           vetNo: this.state.vetNo})
+           vetNo: this.state.vetNo,
+           bio: this.state.bio})
 
       this.setState((prevState) => ({
        pets:newArray
@@ -51,6 +54,9 @@ class MyPets extends React.Component {
     }
     handleVetNoChange(event) {
         this.setState({vetNo: event.target.value});
+    }
+    handleBioChange(event) {
+        this.setState({bio: event.target.value});
     }
 
     render(){
@@ -85,7 +91,7 @@ class MyPets extends React.Component {
                         Medical Conditions: <input type="text" id="medical-conditions" placeholder="Medical Conditions" value={this.state.medConds} onChange={this.handleMedCondsChange}/><br/>
                         Emergency Vet No.: <input type="text" id="emergency-vet" placeholder="Emergency Vet No." value={this.state.vetNo} onChange={this.handleVetNoChange}/><br/>
                         
-                        Any other notes: <br /> <textarea rows="5" cols="50" id="pet-bio" placeholder="Enter Bio here..."></textarea> <br />
+                        Any other notes: <br /> <textarea rows="5" cols="50" id="pet-bio" placeholder="Enter Bio here..." value={this.state.bio} onChange={this.handleBioChange}></textarea> <br />
                         <button onClick={this.addPet}  type="button">Add Another Pet</button>
                     </center> </form>        
                 </div>
