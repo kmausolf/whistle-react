@@ -7,7 +7,8 @@ import OwnerMain from './components/ownermain/OwnerMain';
 import CtMain from './components/ctmain/CtMain';
 import Messaging from './components/messaging/Messaging';
 import Settings from './components/settings/Settings';
-import OwnerProfile from './components/profile/OwnerProfile';
+import OwnerProfile from './components/ownerprofile/OwnerProfile';
+import CaretakerProfile from './components/ctprofile/CaretakerProfile';
 import Results_Walkers from './components/results/Results_Walkers';
 import Results_Sitters from './components/results/Results_Sitters';
 
@@ -20,7 +21,8 @@ export default (
     <Route path="ctmain" component={CtMain} />
     <Route path="messaging" component={Messaging} />
     <Route path="settings" component={Settings} />
-    <Route path="profile" component={OwnerProfile} />
+    <Route path="ownerprofile" component={OwnerProfile} />
+    <Route path="ctprofile" component={CaretakerProfile} />
     <Route path="results_walkers" component={Results_Walkers} />
     <Route path="results_sitters" component={Results_Sitters} />
   </Route>
