@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {RadioGroup,RadioButton} from 'react-radio-buttons';
 
 class WalkerPref extends React.Component{
     constructor(props){
