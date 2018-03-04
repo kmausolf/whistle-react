@@ -9,7 +9,7 @@ class Results_Walkers extends React.Component {
       <div>
         <div className="jumbotron">
           <h1><center>Walkers</center></h1>
-          <h2> <center>Here are some available Walkers near you!</center> </h2>
+          <h2><center>Here are some available Walkers near you!</center></h2>
         </div>
 
         <div>
