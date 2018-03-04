@@ -25,7 +25,8 @@ class MessageBoard extends React.Component {
 
     this.sendMessage = this.sendMessage.bind(this);
     this.showReplyArea = this.showReplyArea.bind(this);
-    this.hideReplyArea = this.hideReplyArea.bind(this);
+    this.handleMessageChange = this.handleMessageChange.bind(this);
+    this.handleReveiverChange = this.handleReveiverChange.bind(this);
   }
 
   sendMessage() {
@@ -36,18 +37,23 @@ class MessageBoard extends React.Component {
       key:      newKey,
       sender:   "admin",
       receiver: this.state.receiver,
-      message:  this.state.message
+      message:  this.state.content
     });
 
     this.setState((prevState) => ({messages:newArray}));
+    this.setState({showing: false});
   }
 
   showReplyArea(){
     this.setState({showing: true});
   }
 
-  hideReplyArea(){
-    this.setState({showing: false});
+  handleMessageChange(event) {
+    this.setState({content: event.target.value});
+  }
+
+  handleReveiverChange(event) {
+    this.setState({receiver: event.target.value});
   }
 
   render(){
@@ -59,8 +65,30 @@ class MessageBoard extends React.Component {
       width:"100%"
     }
 
+    const { showing } = this.state;
+
+    let newMessageButton = null
+    let receiverText = null
+    let messageText = null
+
+    if(!showing){
+        newMessageButton = <button onClick={this.showReplyArea}>New Message</button>;
+        messageText = null;
+        receiverText = null;
+    }
+    else{
+        newMessageButton = <button onClick={this.sendMessage}>Send</button>;
+        messageText = <textarea rows="5" cols="50" placeholder="Enter message here..." value={this.state.content} onChange={this.handleMessageChange}></textarea>;
+        receiverText = <input type="text" id="receiverText" placeholder="Receiver" value={this.state.receiver} onChange={this.handleReveiverChange}/>;
+    }
+
     return(
       <div>
+        {receiverText}
+        <br/>
+        {messageText}
+        <br/>
+        {newMessageButton}
         <div style={borderStyle}>
           <MessageList messages = {this.state.messages} />
         </div>
