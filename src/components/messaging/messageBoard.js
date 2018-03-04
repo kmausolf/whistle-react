@@ -67,9 +67,11 @@ class MessageBoard extends React.Component {
 
     const { showing } = this.state;
 
-    let newMessageButton = null
-    let receiverText = null
-    let messageText = null
+    let newMessageButton = null;
+    let receiverText = null;
+    let messageText = null;
+    
+    
 
     if(!showing){
         newMessageButton = <button onClick={this.showReplyArea}>New Message</button>;
@@ -83,7 +85,9 @@ class MessageBoard extends React.Component {
     }
 
     return(
+      
       <div>
+        <button  type="button"><a href='https://www.paypal.com/us/home'>Pay</a></button> 
         {receiverText}
         <br/>
         {messageText}
