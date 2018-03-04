@@ -16,6 +16,7 @@ describe('Settings form', () => {
       expect(wrapper.find('h3').length).toBe(3);
       expect(wrapper.find('input').length).toBe(2);
       expect(wrapper.find('select.pay').length).toBe(1); //checks that classname
-  });
+      expect(wrapper.children('select.pay').length).toBe(1);
+    });
   
 });
