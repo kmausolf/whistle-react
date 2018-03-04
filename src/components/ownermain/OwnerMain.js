@@ -13,7 +13,7 @@ class OwnerMain extends React.Component {
        
       </div>
       <h2><center>When do you need a caretaker?</center></h2>
-      <div className="text-center">
+      <div className="ownerChoice">
     
            <DatePickerForm /> 
            <br />
