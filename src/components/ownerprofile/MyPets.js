@@ -94,11 +94,11 @@ class MyPets extends React.Component {
         return(
             <div>
                 <div style={borderStyle}>
-                <h2><center> My Pets </center> </h2>
+                <h2><center>My Pets</center> </h2>
 
                         <PetList pets={this.state.pets} />
                 </div>
-                <div style={borderStyle}>
+                <div style={borderStyle} className="petForm">
                     <form> <center>
                         <h2>Add a new pet...</h2>
 
