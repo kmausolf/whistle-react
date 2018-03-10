@@ -1,12 +1,6 @@
-/*
 export default {
   authors: [],
   courses: [],
+  users: [],
   ajaxCallsInProgress: 0
-};
-*/
-
-export default {
-  owners: [],
-  caretakers: []
 };

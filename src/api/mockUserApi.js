@@ -7,32 +7,44 @@ const users = [
     {
         id: 'rusty-shackleford',
         firstName: 'Rusty',
-        lastName: 'Shackleford'
+        lastName: 'Shackleford',
+        email: 'rs@koth.com',
+        pass: 'rs'
     },
     {
         id: 'hank-hill',
         firstName: 'Hank',
-        lastName: 'Hill'
+        lastName: 'Hill',
+        email: 'hh@koth.com',
+        pass: 'hh'
     },
     {
         id: 'jeff-boomhauer',
         firstName: 'Jeff',
-        lastName: 'Boomhauer'
+        lastName: 'Boomhauer',
+        email: 'jb@koth.com',
+        pass: 'jb'
     },
     {
         id: 'fred-flintstone',
         firstName: 'Fred',
-        lastName: 'Flintstone'
+        lastName: 'Flintstone',
+        email: 'ff@stone.com',
+        pass: 'ff'
     },
     {
         id: 'barney-rubble',
         firstName: 'Barney',
-        lastName: 'Rubble'
+        lastName: 'Rubble',
+        email: 'br@stone.com',
+        pass: 'br'
     },
     {
         id: 'bambam-flintstone',
         firstName: 'Bam Bam',
-        lastName: 'Flintstone'
+        lastName: 'Flintstone',
+        email: 'bb@stone.com',
+        pass: 'bb'
     }
 ];
 
@@ -55,13 +67,20 @@ class UserApi {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 //Simulate server-side validation
-                const minUserNameLength = 1;
-                if (user.firstName.length < minUserNameLength){
+                if (user.firstName.length == 0){
                     reject('Please supply your first name.');
                 }
 
-                if(user.lastName.length < minUserNameLength){
+                if(user.lastName.length == 0){
                     reject('Please supply your last name.');
+                }
+
+                if(user.email.length == 0){
+                    reject('Please supply your email.');
+                }
+                
+                if(user.pass.length == 0){
+                    reject('Please supply a password.');
                 }
 
                 else{
