@@ -1,7 +1,7 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React,{PropTypes}  from 'react';
 import {Link} from 'react-router';
 import * as userActions from '../../actions/userActions';
+import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 export class LoginForm extends React.Component {
@@ -59,7 +59,7 @@ export class LoginForm extends React.Component {
                     Don't have an account?  <Link to="/register">Register</Link>
                 </label>
                 <br />
-                <button onClick={this.saveUser} > ffffffff</button>
+                <button onClick={this.saveUser} >Temp save button</button>
                 <Link 
                     className="btn btn-primary"
                     role="button"
@@ -82,7 +82,11 @@ export class LoginForm extends React.Component {
         );
     }
 }
-
+LoginForm.propTypes = {
+    users: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
+  };
+  
 
 function mapStateToProps(state, ownProps) {
     
@@ -90,7 +94,6 @@ function mapStateToProps(state, ownProps) {
 
     return {
       user:user
-     
     };
   }
   
@@ -100,5 +103,7 @@ function mapStateToProps(state, ownProps) {
     };
   }
   
+
 export default LoginForm;
-  //export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+//wont render unless export default Loginform
+//export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
