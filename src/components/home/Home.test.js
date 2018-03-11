@@ -9,8 +9,10 @@ function setup() {
     return shallow(<HomePage/>);
 }
 
+/*
 describe('Our first test', () => {
   
+    
   it('has correct title', () => {
       const wrapper = setup();
       expect(wrapper.find('h1').text()).toEqual('Whistle!');
@@ -21,3 +23,4 @@ describe('Our first test', () => {
     expect(wrapper.find('LoginForm').text()).toExist();
 });
 });
+*/
