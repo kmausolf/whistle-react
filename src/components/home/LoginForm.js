@@ -1,50 +1,9 @@
 import React,{PropTypes}  from 'react';
 import {Link} from 'react-router';
-import * as userActions from '../../actions/userActions';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
-export class LoginForm extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {email: '', pass: '', user: '', isOwner:true}; //changes depending on button pressed
 
-        this.saveUser = this.saveUser.bind(this);
-        this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        this.handleChangePass = this.handleChangePass.bind(this);
-    }
-
-    handleChangeEmail(event){
-        //Whenever the input notices a change, update the state
-        let user = {email: event.target.value, pass: this.state.pass};
-        this.setState({email: event.target.value, user:user});
-       
-        event.preventDefault();
-    }
-
-    handleChangePass(event){
-        let user = {email: this.state.email, pass: event.target.value};
-        this.setState({pass: event.target.value, user:user});
-        
-        event.preventDefault();
-    }
-
-    saveUser(event) {
-        event.preventDefault();
-        alert(JSON.stringify(this.state.user));
-        if (!this.courseFormIsValid()) {
-          return;
-        }
-        
-        this.props.actions.saveUser(this.state.user)
-          .then(() => this.redirect())
-          .catch(error => {
-            
-            this.setState({saving: false});
-          });
-      }
-
-    render(){
+const LoginForm = ({onChangeEmail, onChangePass, onSave}) => {
+    
         const buttonStyle = {
             width: "20vw",
             marginTop: "1%"
@@ -53,18 +12,18 @@ export class LoginForm extends React.Component {
             <form>
                 <label>
                     Email: <br />
-                    <input type="text" value={this.state.email} onChange={this.handleChangeEmail} /><br />
+                    <input type="text" onChange={onChangeEmail} /><br />
                     Password: <br />
-                    <input type="password" value={this.state.pass} onChange={this.handleChangePass} /><br />
+                    <input type="password" onChange={onChangePass} /><br />
                     Don't have an account?  <Link to="/register">Register</Link>
                 </label>
                 <br />
-                <button onClick={this.saveUser} >Temp save button</button>
+                <button onClick={onSave} >Temp save button</button>
                 <Link 
                     className="btn btn-primary"
                     role="button"
                     to="/ownermain"
-                    onClick={this.state.saveUser}
+                    onClick={onSave}
                     style={buttonStyle}
                     >
                     Login as Owner
@@ -80,30 +39,13 @@ export class LoginForm extends React.Component {
                 </Link>
             </form>
         );
-    }
-}
-LoginForm.propTypes = {
-    users: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
-  };
-  
-
-function mapStateToProps(state, ownProps) {
     
-    let user = this.state.user;
+};
 
-    return {
-      user:user
-    };
-  }
-  
-  function mapDispatchToProps(dispatch) {
-    return {
-      actions: bindActionCreators(userActions, dispatch)
-    };
-  }
-  
+LoginForm.propTypes = {
+    onSave: React.PropTypes.func.isRequired,
+    onChangeEmail: React.PropTypes.func.isRequired,
+    onChangePass: React.PropTypes.func.isRequired
+  };
 
 export default LoginForm;
-//wont render unless export default Loginform
-//export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
