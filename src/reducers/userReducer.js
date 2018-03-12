@@ -3,6 +3,12 @@ import initialState from './initialState';
 
 export default function userReducer(state = initialState.users, action){
     switch(action.type) {
+        case types.LOAD_USERS_SUCCESS:
+            return action.users;
+
+        case types.VALIDATE_USER_SUCCESS:
+            return action.response;
+
         case types.CREATE_USER_SUCCESS:
             return [
                 ...state,

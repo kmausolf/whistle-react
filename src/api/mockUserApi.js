@@ -9,42 +9,48 @@ const users = [
         firstName: 'Rusty',
         lastName: 'Shackleford',
         email: 'rs@koth.com',
-        pass: 'rs'
+        pass: 'rs',
+        isOwner: false
     },
     {
         id: 'hank-hill',
         firstName: 'Hank',
         lastName: 'Hill',
         email: 'hh@koth.com',
-        pass: 'hh'
+        pass: 'hh',
+        isOwner: false
     },
     {
         id: 'jeff-boomhauer',
         firstName: 'Jeff',
         lastName: 'Boomhauer',
         email: 'jb@koth.com',
-        pass: 'jb'
+        pass: 'jb',
+        isOwner: false
     },
     {
         id: 'fred-flintstone',
         firstName: 'Fred',
         lastName: 'Flintstone',
         email: 'ff@stone.com',
-        pass: 'ff'
+        pass: 'ff',
+        isOwner: true
     },
     {
         id: 'barney-rubble',
         firstName: 'Barney',
         lastName: 'Rubble',
         email: 'br@stone.com',
-        pass: 'br'
+        pass: 'br',
+        isOwner: true
     },
     {
         id: 'bambam-flintstone',
         firstName: 'Bam Bam',
         lastName: 'Flintstone',
         email: 'bb@stone.com',
-        pass: 'bb'
+        pass: 'bb',
+        isOwner: true
     }
 ];
 
@@ -59,6 +65,26 @@ class UserApi {
                 resolve(Object.assign([], users));
             }, delay);
         });
+    }
+
+    static validateUser(user){
+        return new Promise((resolve, reject) => {
+            const userToSearchFor = users.filter(usr => usr.email == user.email);
+            if(userToSearchFor.length == 0){
+                //Returns an error object
+                reject('User does not exist.');
+            }
+            else{
+                if(userToSearchFor.pass != user.pass){
+                    //Returns an error object
+                    reject('Incorrect password.');
+                }
+                else{
+                    //User exists and pass is correct, returns true in this case
+                    resolve(true);
+                }
+            }
+        },delay);
     }
 
     static saveUser(user) {

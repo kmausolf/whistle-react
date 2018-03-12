@@ -7,44 +7,26 @@ class HomePage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      userEmail: "",
-      userPass: "",
-      isOwner: true
+      email: '',
+      pass: '',
+      isOwner: false
     };
-    this.saveUser = this.saveUser.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePass = this.handleChangePass.bind(this);
   }
 
-  handleChangeEmail(event){
-    //Whenever the input notices a change, update the state
-    let user = {email: event.target.value, pass: this.state.pass};
-    this.setState({email: event.target.value, user:user});
-  //  alert(JSON.stringify(this.state.user));
-    event.preventDefault();
+handleChangeEmail(event){
+  //Whenever the input notices a change, update the state
+  this.setState({email: event.target.value});
+  //alert(JSON.stringify(this.state.user));
+  event.preventDefault();
 }
 
 handleChangePass(event){
-    let user = {email: this.state.email, pass: event.target.value};
-    this.setState({pass: event.target.value, user:user});
-  //  alert(JSON.stringify(this.state.user));
-    event.preventDefault();
+  this.setState({pass: event.target.value});
+//  alert(JSON.stringify(this.state.user));
+  event.preventDefault();
 }
-
-saveUser(event) {
-    event.preventDefault();
-   // alert(JSON.stringify(this.state.user));
-    if (!this.courseFormIsValid()) {
-      return;
-    }
-    
-    this.props.actions.saveUser(this.state.user)
-      .then(() => this.redirect())
-      .catch(error => {
-        
-        this.setState({saving: false});
-      });
-  }
 
   render() {
     return (
