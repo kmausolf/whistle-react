@@ -50,10 +50,13 @@ export default HomePage;
 /*
 function mapStateToProps(state, ownProps) {
   
-  let user = this.state.user;
+  let user = this.state.email;
 
+  //we have these fields in our state, we want them mapped to props?
   return {
-    user:user
+      email: this.state.email,
+      pass: this.state.pass,
+      isOwner: this.state.isOwner
   };
 }
 
