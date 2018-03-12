@@ -1,54 +1,28 @@
-import React from 'react';
-import {Link} from 'react-router';
+import React, {PropTypes} from 'react';
 
-class RegisterForm extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {email: '', pass: ''};
+const RegisterForm = ({user, onChange, ownerReg, ctReg}) => {
 
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(event){
-        //Whenever the input notices a change, update the state
-        this.setState({email: event.target.email, pass: event.target.pass});
-        event.preventDefault();
-    }
-
-    render(){
-        const buttonStyle = {
-            width: "20vw",
-            marginTop: "1%"
-        };
-        return(
-            <form>
-                <label>
-                    Email: <br />
-                    <input type="text" value={this.state.email} onChange={this.handleChange} /><br />
-                    Password: <br />
-                    <input type="password" value={this.state.pass} onChange={this.handleChange} /><br />
-                </label>
-                <br />
-                <Link 
-                    className="btn btn-primary"
-                    role="button"
-                    to="/ownermain"
-                    style={buttonStyle}
-                    >
-                    Register an Owner Account
-                </Link>
-                <br />
-                <Link 
-                    className="btn btn-primary"
-                    role="button"
-                    to="/ctmain"
-                    style={buttonStyle}
-                    >
-                    Register a Caretaker Account
-                </Link>
-            </form>
-        );
-    }
+    const buttonStyle = {
+        width: "20vw",
+        marginTop: "1%"
+    };
+    return(
+        <form>
+            <label>
+                First Name: <br />
+                <input type="text" name="firstName" value={user.firstName} onChange={onChange} /><br />
+                Last Name: <br />
+                <input type="text" name="lastName" value={user.lastName} onChange={onChange} /><br />
+                Email: <br />
+                <input type="text" name="email" value={user.email} onChange={onChange} /><br />
+                Password: <br />
+                <input type="password" name="pass" value={user.pass} onChange={onChange} /><br />
+            </label>
+            <br />
+            <button className="btn btn-primary" onClick={ownerReg}>Register as Pet Owner</button><br />
+            <button className="btn btn-primary" onClick={ctReg}>Register as Caretaker</button><br />
+        </form>
+    );
 }
 
 export default RegisterForm;
