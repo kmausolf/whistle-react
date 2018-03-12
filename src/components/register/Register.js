@@ -10,9 +10,13 @@ class Register extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      email: '',
-      pass: '',
-      isOwner: false
+      user: {
+        firstName: '', 
+        lastName: '',
+        email: '', 
+        pass: '',
+        isOwner: true
+      }
     };
     this.saveUser = this.saveUser.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
@@ -35,9 +39,11 @@ handleChangePass(event){
 
 saveUser(event) {
   event.preventDefault();
- // alert(JSON.stringify(this.state.user));
-  
-  
+  let user = Object.assign({}, this.state.user);
+  user['email'] = this.state.email;
+  user['pass'] = this.state.pass;
+
+  alert(JSON.stringify(this.state.user));
   
   this.props.actions.saveUser(this.state.user)
     .then(() => this.redirect())
@@ -58,26 +64,29 @@ saveUser(event) {
           onChangeEmail={this.handleChangeEmail}
           onChangePass={this.handleChangePass}
           onSave={this.saveUser} />
-       
         </div>
       </div>
     );
   }
 }
 
-export default Register;
+//export default Register;
 
-/*
+
 function mapStateToProps(state, ownProps) {
-  
-  let user = this.state.email;
 
   //we have these fields in our state, we want them mapped to props?
+  /*
   return {
       email: this.state.email,
       pass: this.state.pass,
       isOwner: this.state.isOwner
   };
+  */
+
+  return {
+    user: state.user
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -85,7 +94,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(userActions, dispatch)
   };
 }
-*/
+
 
 //wont render unless export default
-//export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

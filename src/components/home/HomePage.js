@@ -39,7 +39,7 @@ handleChangePass(event){
           <LoginForm 
           onChangeEmail={this.handleChangeEmail}
           onChangePass={this.handleChangePass}
-          onSave={this.onSave} />
+          onSave={this.saveUser} />
         </div>
       </div>
     );

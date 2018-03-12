@@ -11,9 +11,9 @@ const RegisterForm = ({onChangeEmail, onChangePass, onSave}) => {
             <form>
                 <label>
                     Email: <br />
-                    <input type="text" value={this.state.email} onChange={onChangeEmail} /><br />
+                    <input type="text" onChange={onChangeEmail} /><br />
                     Password: <br />
-                    <input type="password" value={this.state.pass} onChange={onChangePass} /><br />
+                    <input type="password" onChange={onChangePass} /><br />
                 </label>
                 <br />
                 <button onClick={onSave}> Test save button</button>
