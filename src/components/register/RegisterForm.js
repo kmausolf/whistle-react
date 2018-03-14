@@ -1,42 +1,28 @@
-import React from 'react';
-import {Link} from 'react-router';
+import React, {PropTypes} from 'react';
 
-const RegisterForm = ({onChangeEmail, onChangePass, onSave}) => {
+const RegisterForm = ({user, onChange, ownerReg, ctReg}) => {
 
-        const buttonStyle = {
-            width: "20vw",
-            marginTop: "1%"
-        };
-        return(
-            <form>
-                <label>
-                    Email: <br />
-                    <input type="text" onChange={onChangeEmail} /><br />
-                    Password: <br />
-                    <input type="password" onChange={onChangePass} /><br />
-                </label>
-                <br />
-                <button onClick={onSave}> Test save button</button>
-                <Link 
-                    className="btn btn-primary"
-                    role="button"
-                    to="/ownermain"
-                    style={buttonStyle}
-                    >
-                    Register an Owner Account
-                </Link>
-                <br />
-                <Link 
-                    className="btn btn-primary"
-                    role="button"
-                    to="/ctmain"
-                    style={buttonStyle}
-                    >
-                    Register a Caretaker Account
-                </Link>
-            </form>
-        );
-    
+    const buttonStyle = {
+        width: "20vw",
+        marginTop: "1%"
+    };
+    return(
+        <form>
+            <label>
+                First Name: <br />
+                <input type="text" name="firstName" value={user.firstName} onChange={onChange} /><br />
+                Last Name: <br />
+                <input type="text" name="lastName" value={user.lastName} onChange={onChange} /><br />
+                Email: <br />
+                <input type="text" name="email" value={user.email} onChange={onChange} /><br />
+                Password: <br />
+                <input type="password" name="pass" value={user.pass} onChange={onChange} /><br />
+            </label>
+            <br />
+            <button className="btn btn-primary" onClick={ownerReg}>Register as Pet Owner</button><br />
+            <button className="btn btn-primary" onClick={ctReg}>Register as Caretaker</button><br />
+        </form>
+    );
 }
 RegisterForm.propTypes = {
     onSave: React.PropTypes.func.isRequired,
