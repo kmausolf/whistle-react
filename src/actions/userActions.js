@@ -31,6 +31,7 @@ export function loadUsers(){
 }
 
 export function validateUser(user){
+    
     return function(dispatch){
         return userApi.validateUser(user).then(response => {
             dispatch(validateUserSuccess(response));
@@ -41,6 +42,7 @@ export function validateUser(user){
 }
 
 export function saveUser(user) {
+    
     return function(dispatch, getState) {
         dispatch(beginAjaxCall());
         return userApi.saveUser(user).then(user => {

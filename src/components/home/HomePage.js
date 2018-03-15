@@ -37,7 +37,7 @@ loginUser(event){
       return;
   }*/
   
-  this.props.actions.verifyUser(this.state.user)
+  this.props.actions.validateUser(this.state.user)
   .then(() => this.redirect())   //redirects when finished. rejections won't call redirect?
   .catch(error => {
     toastr.error(error);
@@ -94,7 +94,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
-
-//wont render unless export default
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

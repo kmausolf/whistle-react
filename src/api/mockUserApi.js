@@ -69,13 +69,14 @@ class UserApi {
 
     static validateUser(user){
         return new Promise((resolve, reject) => {
-            const userToSearchFor = users.filter(usr => usr.email == user.email);
+            const userToSearchFor = users.filter(usr => usr.email == user.email); //makes a shallow copy. Cannot ref userToSearchFor.pass
+            const userToSearchForPass = users.filter(usr => usr.pass == user.pass);
             if(userToSearchFor.length == 0){
                 //Returns an error object
                 reject('User does not exist.');
             }
             else{
-                if(userToSearchFor.pass != user.pass){
+                if(userToSearchForPass == 0){
                     //Returns an error object
                     reject('Incorrect password.');
                 }
