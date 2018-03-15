@@ -4,6 +4,7 @@ import * as userActions from '../../actions/userActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
+import {browserHistory} from 'react-router';
 class HomePage extends React.Component {
   constructor(props){
     super(props);
@@ -16,7 +17,8 @@ class HomePage extends React.Component {
       errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
-    this.loginUser = this.loginUser.bind(this);
+    this.ownerLogin = this.ownerLogin.bind(this);
+    this.ctLogin = this.ctLogin.bind(this);
   }
 
 handleChange(event){
@@ -24,9 +26,28 @@ handleChange(event){
   //Whenever the input notices a change, update the state
   let user = Object.assign({}, this.state.user);
   user[event.target.name] = event.target.value;
-
+  
   this.setState({user: user});
 }
+
+
+ownerLogin(event){
+  event.preventDefault();
+  let user = Object.assign({}, this.state.user);
+  user.isOwner = true;
+  this.setState({user: user}); 
+  this.loginUser(event);
+}
+
+ctLogin(event){
+  event.preventDefault();
+  let user2 = Object.assign({}, this.state.user);
+  user2.isOwner = false;
+
+  this.setState({user: user2});
+  this.loginUser(event);
+}
+
 
 loginUser(event){
   event.preventDefault();
@@ -48,12 +69,12 @@ loginUser(event){
 redirect(){
   toastr.success('Login Successful!');
   if(this.state.user.isOwner){
-      alert("Owner login");
-      //browserHistory.push('/ownermain');
+     
+      browserHistory.push('/ownermain');
   }
   else{
-      alert("CT login");
-      //browserHistory.push('/ctmain');
+      
+      browserHistory.push('/ctmain');
   }
 }
 
@@ -69,7 +90,8 @@ redirect(){
           user={this.state.user}
           onChangeEmail={this.handleChange}
           onChangePass={this.handleChange}
-          onSave={this.loginUser} />
+          ownerLogin={this.ownerLogin}
+          ctLogin={this.ctLogin} />
         </div>
       </div>
     );

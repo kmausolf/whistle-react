@@ -70,7 +70,8 @@ class UserApi {
     static validateUser(user){
         return new Promise((resolve, reject) => {
             const userToSearchFor = users.filter(usr => usr.email == user.email); //makes a shallow copy. Cannot ref userToSearchFor.pass
-            const userToSearchForPass = users.filter(usr => usr.pass == user.pass);
+            const userToSearchForPass = users.filter(usr => usr.pass == user.pass && usr.email == user.email);
+            const correctType = users.filter(usr => usr.isOwner == user.isOwner && usr.pass == user.pass && usr.email == user.email);
             if(userToSearchFor.length == 0){
                 //Returns an error object
                 reject('User does not exist.');
@@ -79,7 +80,10 @@ class UserApi {
                 if(userToSearchForPass == 0){
                     //Returns an error object
                     reject('Incorrect password.');
-                }
+                } 
+                /*else if (correctType == 0){
+                    reject('Wrong account type.');
+                }*/
                 else{
                     //User exists and pass is correct, returns true in this case
                     resolve(true);

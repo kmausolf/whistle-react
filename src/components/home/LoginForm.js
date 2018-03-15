@@ -2,7 +2,7 @@ import React,{PropTypes}  from 'react';
 import {Link} from 'react-router';
 
 
-const LoginForm = ({user,onChangeEmail, onChangePass, onSave}) => {
+const LoginForm = ({user,onChangeEmail, onChangePass, ownerLogin, ctLogin}) => {
     
         const buttonStyle = {
             width: "20vw",
@@ -18,34 +18,18 @@ const LoginForm = ({user,onChangeEmail, onChangePass, onSave}) => {
                     Don't have an account?  <Link to="/register">Register</Link>
                 </label>
                 <br />
-                <button onClick={onSave}>Temp save button</button>
-                <Link 
-                    className="btn btn-primary"
-                    role="button"
-                    to="/ownermain"
-                    onClick={onSave}
-                    style={buttonStyle}
-                    >
-                    Login as Owner
-                </Link>
-                <br />
-                <Link 
-                    className="btn btn-primary"
-                    role="button"
-                    to="/ctmain"
-                    style={buttonStyle}
-                    >
-                    Login as Caretaker
-                </Link>
+                
+                <button className="btn btn-primary" onClick={ownerLogin}>Login as Pet Owner</button><br />
+                <button className="btn btn-primary" onClick={ctLogin}>Login as Caretaker</button><br />
             </form>
         );
     
 };
 
+/*
 LoginForm.propTypes = {
-    onSave: React.PropTypes.func.isRequired,
     onChangeEmail: React.PropTypes.func.isRequired,
     onChangePass: React.PropTypes.func.isRequired
   };
-
+*/
 export default LoginForm;
