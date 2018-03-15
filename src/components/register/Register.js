@@ -4,11 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions';
 import toastr from 'toastr';
 import {browserHistory} from 'react-router';
-
-import RegisterForm from './RegisterForm';
-import * as userActions from '../../actions/userActions';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import RegisterForm from './RegisterForm'
 class Register extends React.Component {
 constructor(props){
     super(props);
