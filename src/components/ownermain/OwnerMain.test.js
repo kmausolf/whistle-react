@@ -15,7 +15,7 @@ function setupDPF() {
 function setupSTF() {
     return shallow(<SearchTypeForm/>);
 }
-
+/*
 describe('Test OwnerMain page', () => {
  
   it('has header and calendar components', () => {
@@ -41,4 +41,4 @@ describe('Test SearchTypeForm ', () => {
         expect(wrapper.find('Link').length).toEqual(2);
         expect(wrapper.find('form').length).toEqual(1);
     });
-});
+}); */

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 class App extends React.Component {
 
-  
+  //make universal user thing here?
   render() {
     return (
       <div className="container-fluid">

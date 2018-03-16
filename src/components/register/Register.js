@@ -125,6 +125,7 @@ Register.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
+//maps store's state to props for this page
 function mapStateToProps(state, ownProps) {
     return{
         user: state.user

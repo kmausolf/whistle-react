@@ -12,7 +12,7 @@ class HomePage extends React.Component {
       user: {
         email: '', 
         pass: '',
-        isOwner: true
+        isOwner: ''
       }, 
       errors: {}
     };

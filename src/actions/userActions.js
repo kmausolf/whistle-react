@@ -19,6 +19,12 @@ export function createUserSuccess(user) {
     return {type: types.CREATE_USER_SUCCESS, user};
 }
 
+
+export function setCurrUser(currUser){
+    return {type: types.SET_CURR_USER, currUser}; 
+}
+//will set currUser when user logs in. currUser field is now set in the store.
+
 export function loadUsers(){
     return function(dispatch){
         dispatch(beginAjaxCall());
@@ -31,10 +37,11 @@ export function loadUsers(){
 }
 
 export function validateUser(user){
-    
+
     return function(dispatch){
         return userApi.validateUser(user).then(response => {
             dispatch(validateUserSuccess(response));
+            dispatch(setCurrUser(user));
         }).catch(error => {
             throw(error);
         });
