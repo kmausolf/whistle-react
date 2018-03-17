@@ -1,14 +1,15 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {Link} from 'react-router';
-import * as threadActions from '../../actions/threadActions';
 
 import ThreadList from "./ThreadList";
 
 class MessageBoard extends React.Component {
+<<<<<<< HEAD
   constructor(props) {
     super(props);
+=======
+  constructor(props, context) {
+    super(props, context);
+>>>>>>> d01f20b2705ae88c341c155c338a66b2d7a8cce4
   }
 
   render(){
@@ -23,13 +24,21 @@ class MessageBoard extends React.Component {
     return(
       <div>
         <div style={borderStyle}>
+<<<<<<< HEAD
           <ThreadList threads = {this.props.threads} />
+=======
+          <ThreadList 
+            threads = {this.props.threads} 
+            actions = {this.props.actions}
+          />
+>>>>>>> d01f20b2705ae88c341c155c338a66b2d7a8cce4
         </div>
       </div>
     );
   }
 }
 
+<<<<<<< HEAD
 export default MessageBoard;
 
 // MessageBoard.propTypes = {
@@ -49,3 +58,12 @@ export default MessageBoard;
 // }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(MessageBoard);
+=======
+
+MessageBoard.propTypes = {
+  threads: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
+};
+
+export default MessageBoard;
+>>>>>>> d01f20b2705ae88c341c155c338a66b2d7a8cce4
