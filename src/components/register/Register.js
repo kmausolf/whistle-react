@@ -4,9 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions';
 import toastr from 'toastr';
 import {browserHistory} from 'react-router';
-
-import RegisterForm from './RegisterForm';
-
+import RegisterForm from './RegisterForm'
 class Register extends React.Component {
 constructor(props){
     super(props);
@@ -127,6 +125,7 @@ Register.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
+//maps store's state to props for this page
 function mapStateToProps(state, ownProps) {
     return{
         user: state.user

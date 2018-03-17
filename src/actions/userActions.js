@@ -19,6 +19,12 @@ export function createUserSuccess(user) {
     return {type: types.CREATE_USER_SUCCESS, user};
 }
 
+
+export function setCurrUser(currUser){
+    return {type: types.SET_CURR_USER, currUser}; 
+}
+//will set currUser when user logs in. currUser field is now set in the store.
+
 export function loadUsers(){
     return function(dispatch){
         dispatch(beginAjaxCall());
@@ -31,9 +37,11 @@ export function loadUsers(){
 }
 
 export function validateUser(user){
+
     return function(dispatch){
         return userApi.validateUser(user).then(response => {
             dispatch(validateUserSuccess(response));
+            //dispatch(setCurrUser(user));
         }).catch(error => {
             throw(error);
         });
@@ -41,11 +49,13 @@ export function validateUser(user){
 }
 
 export function saveUser(user) {
+    
     return function(dispatch, getState) {
         dispatch(beginAjaxCall());
         return userApi.saveUser(user).then(user => {
             //If the user already exists, update it, otherwise, create new
-            user.id ? dispatch(updateUserSuccess(user)) :
+            //we don't need this feature for now. A new user is a new user.
+            //user.id ? dispatch(updateUserSuccess(user)) :
                 dispatch(createUserSuccess(user));
         }).catch(error => {
             dispatch(ajaxCallError(error));

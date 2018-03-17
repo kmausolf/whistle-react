@@ -9,6 +9,14 @@ export default function userReducer(state = initialState.users, action){
         case types.VALIDATE_USER_SUCCESS:
             return action.response;
 
+        case types.SET_CURR_USER:
+            return action.currUser;
+            /*
+            return [
+                ...state,
+                Object.assign({}, action.currUser)
+            ];*/
+   
         case types.CREATE_USER_SUCCESS:
             return [
                 ...state,

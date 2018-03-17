@@ -24,5 +24,10 @@ const RegisterForm = ({user, onChange, ownerReg, ctReg}) => {
         </form>
     );
 }
+RegisterForm.propTypes = {
+    onSave: React.PropTypes.func.isRequired,
+    onChangeEmail: React.PropTypes.func.isRequired,
+    onChangePass: React.PropTypes.func.isRequired
+  };
 
 export default RegisterForm;

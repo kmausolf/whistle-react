@@ -3,29 +3,79 @@ import LoginForm from './LoginForm';
 import * as userActions from '../../actions/userActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import toastr from 'toastr';
+import {browserHistory} from 'react-router';
 class HomePage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      email: '',
-      pass: '',
-      isOwner: false
+      user: {
+        email: '', 
+        pass: '',
+        isOwner: ''
+      }, 
+      errors: {}
     };
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePass = this.handleChangePass.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.ownerLogin = this.ownerLogin.bind(this);
+    this.ctLogin = this.ctLogin.bind(this);
   }
 
-handleChangeEmail(event){
-  //Whenever the input notices a change, update the state
-  this.setState({email: event.target.value});
-  //alert(JSON.stringify(this.state.user));
+handleChange(event){
   event.preventDefault();
+  //Whenever the input notices a change, update the state
+  let user = Object.assign({}, this.state.user);
+  user[event.target.name] = event.target.value;
+  
+  this.setState({user: user});
 }
 
-handleChangePass(event){
-  this.setState({pass: event.target.value});
-//  alert(JSON.stringify(this.state.user));
+
+ownerLogin(event){
   event.preventDefault();
+  let user = Object.assign({}, this.state.user);
+  user.isOwner = true;
+  this.setState({user: user}); 
+  this.loginUser(event);
+}
+
+ctLogin(event){
+  event.preventDefault();
+  let user2 = Object.assign({}, this.state.user);
+  user2.isOwner = false;
+
+  this.setState({user: user2});
+  this.loginUser(event);
+}
+
+
+loginUser(event){
+  event.preventDefault();
+  alert(JSON.stringify(this.state.user));
+  
+  /*
+  if(!this.regFormIsValid()){
+      return;
+  }*/
+  
+  this.props.actions.validateUser(this.state.user)
+  .then(() => this.redirect())   //redirects when finished. rejections won't call redirect?
+  .catch(error => {
+    toastr.error(error);
+  }); 
+
+}
+
+redirect(){
+  toastr.success('Login Successful!');
+  if(this.state.user.isOwner){
+     
+      browserHistory.push('/ownermain');
+  }
+  else{
+      
+      browserHistory.push('/ctmain');
+  }
 }
 
   render() {
@@ -37,23 +87,26 @@ handleChangePass(event){
         </div>
         <div className="text-center">
           <LoginForm 
-          onChangeEmail={this.handleChangeEmail}
-          onChangePass={this.handleChangePass}
-          onSave={this.onSave} />
+          user={this.state.user}
+          onChangeEmail={this.handleChange}
+          onChangePass={this.handleChange}
+          ownerLogin={this.ownerLogin}
+          ctLogin={this.ctLogin} />
         </div>
       </div>
     );
   }
 }
-export default HomePage;
+//export default HomePage;
 
-/*
+//state is what is returned by the reducer? ownProps is props of HOmepage?
+//in this case, a boolean is returned.
 function mapStateToProps(state, ownProps) {
-  
-  let user = this.state.user;
-
+   let currUser = ownProps.user;
+  //we have these fields in our state, we want them mapped to props?
   return {
-    user:user
+    response: state.response,
+    user: currUser
   };
 }
 
@@ -62,8 +115,5 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(userActions, dispatch)
   };
 }
-*/
 
-
-//wont render unless export default
-//export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -69,17 +69,28 @@ class UserApi {
 
     static validateUser(user){
         return new Promise((resolve, reject) => {
-            const userToSearchFor = users.filter(usr => usr.email == user.email);
+            const userToSearchFor = users.filter(usr => usr.email == user.email); //makes a shallow copy. Cannot ref userToSearchFor.pass
+            const userToSearchForPass = users.filter(usr => usr.pass == user.pass && usr.email == user.email);
+            const correctType = users.filter(usr => usr.isOwner == user.isOwner && usr.pass == user.pass && usr.email == user.email);
             if(userToSearchFor.length == 0){
                 //Returns an error object
                 reject('User does not exist.');
             }
             else{
-                if(userToSearchFor.pass != user.pass){
+                if(userToSearchForPass == 0){
                     //Returns an error object
                     reject('Incorrect password.');
-                }
+                } 
+                /*else if (correctType == 0){
+                    reject('Wrong account type.');
+                }*/
                 else{
+                    localStorage.clear(); //remove previously logged in user (will be implemented in log out)
+                    var deepUserCpy = users.find(function(usr) {
+                        return usr.email === user.email && usr.pass === user.pass;
+                      });
+                    //we want to save fields like name etc.
+                    localStorage.setItem('currUser', JSON.stringify(deepUserCpy));
                     //User exists and pass is correct, returns true in this case
                     resolve(true);
                 }
@@ -114,6 +125,14 @@ class UserApi {
                     user.id = generateId(user);
                     users.push(user);
                 }
+                
+                //save this user since they are logged in
+                localStorage.clear(); //remove previously logged in user (will be implemented in log out)
+                var deepUserCpy = users.find(function(usr) {
+                    return usr.email === user.email && usr.pass === user.pass;
+                  });
+                //we want to save fields like name etc.
+                localStorage.setItem('currUser', JSON.stringify(deepUserCpy));
 
                 resolve(user);
             },delay);
