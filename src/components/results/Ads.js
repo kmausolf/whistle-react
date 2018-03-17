@@ -1,6 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router';
 import CardList from './CardList';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as userActions from '../../actions/userActions';
+import toastr from 'toastr';
+
 class Ads extends React.Component {
 
     constructor(props){
@@ -74,6 +79,8 @@ class Ads extends React.Component {
             float: "right",
             borderRadius: '5px'
           };
+
+          //alert(this.props);
         return(
             <div>
             <form>
@@ -91,4 +98,18 @@ class Ads extends React.Component {
     }
 }
 
-export default Ads;
+
+function mapStateToProps(state, ownProps) {
+    alert(state.users);
+    return{
+        users: state.users
+    };
+  }
+  
+  function mapDispatchToProps(dispatch){
+    return{
+        actions: bindActionCreators(userActions, dispatch)
+    };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Ads);
