@@ -41,7 +41,7 @@ export function validateUser(user){
     return function(dispatch){
         return userApi.validateUser(user).then(response => {
             dispatch(validateUserSuccess(response));
-            dispatch(setCurrUser(user));
+            //dispatch(setCurrUser(user));
         }).catch(error => {
             throw(error);
         });
@@ -54,7 +54,8 @@ export function saveUser(user) {
         dispatch(beginAjaxCall());
         return userApi.saveUser(user).then(user => {
             //If the user already exists, update it, otherwise, create new
-            user.id ? dispatch(updateUserSuccess(user)) :
+            //we don't need this feature for now. A new user is a new user.
+            //user.id ? dispatch(updateUserSuccess(user)) :
                 dispatch(createUserSuccess(user));
         }).catch(error => {
             dispatch(ajaxCallError(error));
