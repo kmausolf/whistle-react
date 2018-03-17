@@ -14,7 +14,6 @@ class MessageCard extends React.Component {
         return (
             <div>
                 <div> <left>
-                    {console.log(this.props.thread)}
                 </left> </div>
             </div>
         );

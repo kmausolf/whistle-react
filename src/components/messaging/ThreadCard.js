@@ -4,6 +4,8 @@ class ThreadCard extends React.Component {
     constructor(props) {
         super(props);
     }
+
+
     render() {
         const imgStyle = {
             borderRadius: "10px",
@@ -14,7 +16,8 @@ class ThreadCard extends React.Component {
         return (
             <div>
                 <div> <left>
-                    {console.log(this.props)}
+                    <p>User in this thread: </p>
+                    {console.log(this.props.thread)}
                 </left> </div>
             </div>
         );
