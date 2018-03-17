@@ -85,6 +85,12 @@ class UserApi {
                     reject('Wrong account type.');
                 }*/
                 else{
+                    localStorage.clear(); //remove previously logged in user (will be implemented in log out)
+                    var deepUserCpy = users.find(function(usr) {
+                        return usr.email === user.email && usr.pass === user.pass;
+                      });
+                    //we want to save fields like name etc.
+                    localStorage.setItem('currUser', JSON.stringify(deepUserCpy));
                     //User exists and pass is correct, returns true in this case
                     resolve(true);
                 }
@@ -119,6 +125,14 @@ class UserApi {
                     user.id = generateId(user);
                     users.push(user);
                 }
+                
+                //save this user since they are logged in
+                localStorage.clear(); //remove previously logged in user (will be implemented in log out)
+                var deepUserCpy = users.find(function(usr) {
+                    return usr.email === user.email && usr.pass === user.pass;
+                  });
+                //we want to save fields like name etc.
+                localStorage.setItem('currUser', JSON.stringify(deepUserCpy));
 
                 resolve(user);
             },delay);
