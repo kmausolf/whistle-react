@@ -23,7 +23,7 @@ class MessageBoard extends React.Component {
       width:"100%"
     }
 
-    this.state.threads = threadActions.getAllThreads()
+    this.setState({threads: this.props.actions.getAllThreads()});
 
     return(
       <div>
@@ -35,23 +35,22 @@ class MessageBoard extends React.Component {
   }
 }
 
-export default MessageBoard;
+// export default MessageBoard;
 
-// MessageBoard.propTypes = {
-//   threads: PropTypes.array.isRequired,
-//   actions: PropTypes.object.isRequired
-// };
+MessageBoard.propTypes = {
+  actions: PropTypes.object.isRequired
+};
 
-// function mapStateToProps(state, ownProps) {
-//   return{
-//     threads: this.state.threads
-//   };
-// }
+function mapStateToProps(state, ownProps) {
+  return{
+    threads: this.state.threads
+  };
+}
 
-// function mapDispatchToProps(dispatch){
-//   return{
-//     actions: bindActionCreators(threadActions, dispatch)
-//   };
-// }
+function mapDispatchToProps(dispatch){
+  return{
+    actions: bindActionCreators(threadActions, dispatch)
+  };
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(MessageBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(MessageBoard);
