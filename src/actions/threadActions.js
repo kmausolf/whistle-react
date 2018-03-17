@@ -10,6 +10,7 @@ export function getAllThreads(){
     return function(dispatch){
         dispatch(beginAjaxCall());
         return threadApi.getAllThreads().then(threads => {
+            // console.log(threads)
             dispatch(getAllThreadsSuccess(threads));
         }).catch(error => {
             throw(error);

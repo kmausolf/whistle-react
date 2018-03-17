@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-class MessageCard extends React.Component {
+class ThreadCard extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -14,16 +14,16 @@ class MessageCard extends React.Component {
         return (
             <div>
                 <div> <left>
-                    {console.log(this.props.thread)}
+                    {console.log(this.props)}
                 </left> </div>
             </div>
         );
     }
 }
 
-MessageCard.propTypes = {
-    thread: PropTypes.array.isRequired,
+ThreadCard.propTypes = {
+    thread: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 };
 
-export default MessageCard;
+export default ThreadCard;

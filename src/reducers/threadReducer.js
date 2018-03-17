@@ -4,7 +4,7 @@ import initialState from './initialState';
 export default function threadReducer(state = initialState.thread, action){
     switch(action.type) {
         case types.GET_ALL_THREADS_SUCCESS:
-            return action.threads;
+            return action.threads
         
         default:
             return state;

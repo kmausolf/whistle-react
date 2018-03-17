@@ -2,12 +2,14 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as threadActions from '../../actions/threadActions';
+import * as userActions from '../../actions/userActions';
 
 import MessageBoard from './messageBoard';
 
 class Messaging extends React.Component{
   constructor(props){
     super(props);
+    this.props.actions.getAllThreads()
   }
 
   render(){
@@ -27,19 +29,19 @@ class Messaging extends React.Component{
 
 Messaging.propTypes = {
   actions: PropTypes.object.isRequired,
-  threads: PropTypes.object.isRequired
+  threads: PropTypes.array.isRequired
 };
 
 
 function mapStateToProps(state, ownProps) {
   return{
-    threads: state.threads
+    threads: state.thread
   };
 }
 
 function mapDispatchToProps(dispatch){
   return{
-    actions: bindActionCreators(threadActions, dispatch)
+    actions: bindActionCreators(Object.assign({}, threadActions, userActions), dispatch)
   };
 }
 

@@ -14,14 +14,21 @@ const threads = [
 ]
 
 const generateTreadId = () => {
-    return threads.length();
+    return Object.keys(threads).length;
 };
 
 class ThreadApi {
     static getAllThreads() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(Object.assign([], threads));
+                var threadsArray = [];
+                for(var i = 0; i < Object.keys(threads).length; i++) {
+                    threadsArray.push({});
+                    threadsArray[i].tid = threads[i].tid;
+                    threadsArray[i].users = Object.assign({}, threads[i].users);
+                    threadsArray[i].messages = Object.assign({}, threads[i].messages);
+                }
+                resolve(threadsArray);
             }, delay);
         });
     }

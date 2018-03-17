@@ -31,7 +31,7 @@ class MessageBoard extends React.Component {
 
 
 MessageBoard.propTypes = {
-  threads: PropTypes.object.isRequired,
+  threads: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
 
