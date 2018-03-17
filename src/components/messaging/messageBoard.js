@@ -7,11 +7,8 @@ import * as threadActions from '../../actions/threadActions';
 import ThreadList from "./ThreadList";
 
 class MessageBoard extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      threads: []
-    };
+  constructor(props) {
+    super(props);
   }
 
   render(){
@@ -23,34 +20,32 @@ class MessageBoard extends React.Component {
       width:"100%"
     }
 
-    this.setState({threads: this.props.actions.getAllThreads()});
-
     return(
       <div>
         <div style={borderStyle}>
-          <ThreadList threads = {this.state.threads} />
+          <ThreadList threads = {this.props.threads} />
         </div>
       </div>
     );
   }
 }
 
-// export default MessageBoard;
+export default MessageBoard;
 
-MessageBoard.propTypes = {
-  actions: PropTypes.object.isRequired
-};
+// MessageBoard.propTypes = {
+//   actions: PropTypes.object.isRequired
+// };
 
-function mapStateToProps(state, ownProps) {
-  return{
-    threads: this.state.threads
-  };
-}
+// function mapStateToProps(state, ownProps) {
+//   return{
+//     threads: this.props.actions.getAllThreads()
+//   };
+// }
 
-function mapDispatchToProps(dispatch){
-  return{
-    actions: bindActionCreators(threadActions, dispatch)
-  };
-}
+// function mapDispatchToProps(dispatch){
+//   return{
+//     actions: bindActionCreators(threadActions, dispatch)
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageBoard);
+// export default connect(mapStateToProps, mapDispatchToProps)(MessageBoard);
