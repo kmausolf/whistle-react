@@ -12,12 +12,9 @@ const MessageCard = (props) => {
     };
     return (
         <div>
-            <img src="https://i.imgur.com/jNNT4LE.png" style={imgStyle} />
             <div> <left>
-                <p> From: {props.sender} </p> 
-                <p> {props.message} </p><br/>
+                <p> From: {props.thread.tid} </p> 
             </left> </div>
-            <center> <ReplyToggle/> </center>
         </div>
     );
 }
