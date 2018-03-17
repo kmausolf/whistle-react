@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as threadActions from '../../actions/threadActions';
 
 import MessageBoard from './messageBoard';
-import { bindActionCreators } from 'redux';
 
 class Messaging extends React.Component{
   constructor(props){
@@ -22,6 +24,12 @@ class Messaging extends React.Component{
     );
   }
 }
+
+Messaging.propTypes = {
+  actions: PropTypes.object.isRequired,
+  threads: PropTypes.object.isRequired
+};
+
 
 function mapStateToProps(state, ownProps) {
   return{
