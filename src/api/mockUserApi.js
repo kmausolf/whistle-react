@@ -67,6 +67,37 @@ class UserApi {
         });
     }
 
+    static getCopyOfUser(user) {
+        // create and return a deep copy of user
+        var newUser = {};
+        newUser.id = user.id;
+        newUser.firstName = user.firstName;
+        newUser.lastName = lastName;
+        newUser.email = user.email;
+        newUser.pass = user.pass;
+        newUser.isOwner = user.isOwner;
+    }
+
+    static getUser(id) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                var user = {};
+                for(var i = 0; i < Object.keys(users).length; i++) {
+                    if(users[i].id == id) {
+                        user = getCopyOfUser(user[i]);
+                        break;
+                    }
+                }
+                if(user == {}) {
+                    reject('User does not exist');
+                }
+                else {
+                    resolve(user);
+                }
+            }, delay);
+        });
+    }
+
     static validateUser(user){
         return new Promise((resolve, reject) => {
             const userToSearchFor = users.filter(usr => usr.email == user.email); //makes a shallow copy. Cannot ref userToSearchFor.pass

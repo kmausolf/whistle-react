@@ -1,29 +1,40 @@
-import React from 'react';
-import {Link} from 'react-router';
+import React, {PropTypes} from 'react';
 
-import MessageCard from "./messageCard";
+import ThreadCard from "./ThreadCard";
 
-const ThreadList = (props) => {
-    const cardStyle = {
-        padding:'7px', 
-        border: '1.5px solid',
-        borderRadius: '10px',
-        borderColor: "#707070",
-        width:"100%"
-        
-      };
-  return (
-    <div>
-      {/* {props.threads.map(thread =>
-        <div key={thread.tid} style={cardStyle}>
-          <MessageCard {...thread}/>
-        </div>
-      )} */}
+class ThreadList extends React.Component {
+    constructor(props) {
+      super(props);
+    }
 
-      {/* <p>{props.threads[0].tid}</p> */}
-    </div>
-  );
+    render() {
+        const cardStyle = {
+            padding:'7px', 
+            border: '1.5px solid',
+            borderRadius: '10px',
+            borderColor: "#707070",
+            width:"100%"
+            
+        };
+        return (
+            <div>
+                {this.props.threads.map(thread =>
+                    <div key={thread.tid} style={cardStyle}>
+                        <ThreadCard 
+                            thread = {thread}
+                            actions = {this.props.actions}
+                        />
+                    </div>
+                )}
+            </div>
+        );
+    }
 
 };
+
+ThreadList.propTypes = {
+    threads: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
+  };
 
 export default ThreadList;

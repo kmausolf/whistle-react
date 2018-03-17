@@ -1,9 +1,11 @@
 import React, {PropTypes} from 'react';
 
-class MessageCard extends React.Component {
+class ThreadCard extends React.Component {
     constructor(props) {
         super(props);
     }
+
+
     render() {
         const imgStyle = {
             borderRadius: "10px",
@@ -14,15 +16,17 @@ class MessageCard extends React.Component {
         return (
             <div>
                 <div> <left>
+                    <p>User in this thread: </p>
+                    {console.log(this.props.thread)}
                 </left> </div>
             </div>
         );
     }
 }
 
-MessageCard.propTypes = {
-    thread: PropTypes.array.isRequired,
+ThreadCard.propTypes = {
+    thread: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 };
 
-export default MessageCard;
+export default ThreadCard;
