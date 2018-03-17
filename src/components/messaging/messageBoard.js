@@ -3,8 +3,8 @@ import React, {PropTypes} from 'react';
 import ThreadList from "./ThreadList";
 
 class MessageBoard extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
   }
 
   render(){
