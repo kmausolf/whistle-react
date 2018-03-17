@@ -1,17 +1,10 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {Link} from 'react-router';
-import * as threadActions from '../../actions/threadActions';
 
 import ThreadList from "./ThreadList";
 
 class MessageBoard extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      threads: []
-    };
   }
 
   render(){
@@ -23,34 +16,23 @@ class MessageBoard extends React.Component {
       width:"100%"
     }
 
-    this.setState({threads: this.props.actions.getAllThreads()});
-
     return(
       <div>
         <div style={borderStyle}>
-          <ThreadList threads = {this.state.threads} />
+          <ThreadList 
+            threads = {this.props.threads} 
+            actions = {this.props.actions}
+          />
         </div>
       </div>
     );
   }
 }
 
-// export default MessageBoard;
 
 MessageBoard.propTypes = {
+  threads: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-  return{
-    threads: this.state.threads
-  };
-}
-
-function mapDispatchToProps(dispatch){
-  return{
-    actions: bindActionCreators(threadActions, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MessageBoard);
+export default MessageBoard;

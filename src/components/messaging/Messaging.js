@@ -1,7 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router';
 
 import MessageBoard from './messageBoard';
+import { bindActionCreators } from 'redux';
 
 class Messaging extends React.Component{
   constructor(props){
@@ -14,10 +14,25 @@ class Messaging extends React.Component{
         <div className="jumbotron">
           <h1><center>Messages</center></h1>
         </div>
-        <MessageBoard/>
+        <MessageBoard 
+          threads = {this.props.threads}
+          actions = {this.props.actions}
+        />
       </div>
     );
   }
 }
 
-export default Messaging;
+function mapStateToProps(state, ownProps) {
+  return{
+    threads: state.threads
+  };
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+    actions: bindActionCreators(threadActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Messaging);
