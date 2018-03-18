@@ -28,6 +28,9 @@ class CtMain extends React.Component {
   }
 
   render() {
+    let currUser = JSON.parse(localStorage.getItem('currUser'));
+    
+    alert(JSON.stringify(currUser));
     return (
       <div>
         <div className="jumbotron">
