@@ -17,8 +17,8 @@ class HomePage extends React.Component {
       errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
-    this.ownerLogin = this.ownerLogin.bind(this);
-    this.ctLogin = this.ctLogin.bind(this);
+    this.loginUser = this.loginUser.bind(this);
+    
   }
 
 handleChange(event){
@@ -31,32 +31,9 @@ handleChange(event){
 }
 
 
-ownerLogin(event){
-  event.preventDefault();
-  let user = Object.assign({}, this.state.user);
-  user.isOwner = true;
-  this.setState({user: user}); 
-  this.loginUser(event);
-}
-
-ctLogin(event){
-  event.preventDefault();
-  let user2 = Object.assign({}, this.state.user);
-  user2.isOwner = false;
-
-  this.setState({user: user2});
-  this.loginUser(event);
-}
-
-
 loginUser(event){
   event.preventDefault();
   alert(JSON.stringify(this.state.user));
-  
-  /*
-  if(!this.regFormIsValid()){
-      return;
-  }*/
   
   this.props.actions.validateUser(this.state.user)
   .then(() => this.redirect())   //redirects when finished. rejections won't call redirect?
@@ -67,8 +44,11 @@ loginUser(event){
 }
 
 redirect(){
+  let currUser = JSON.parse(localStorage.getItem('currUser'));
+  let isOwner = currUser.isOwner;
+  alert(isOwner);
   toastr.success('Login Successful!');
-  if(this.state.user.isOwner){
+  if(isOwner){
      
       browserHistory.push('/ownermain');
   }
@@ -90,8 +70,8 @@ redirect(){
           user={this.state.user}
           onChangeEmail={this.handleChange}
           onChangePass={this.handleChange}
-          ownerLogin={this.ownerLogin}
-          ctLogin={this.ctLogin} />
+          onLogin={this.loginUser}
+         />
         </div>
       </div>
     );

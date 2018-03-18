@@ -2,7 +2,7 @@ import React,{PropTypes}  from 'react';
 import {Link} from 'react-router';
 
 
-const LoginForm = ({user,onChangeEmail, onChangePass, ownerLogin, ctLogin}) => {
+const LoginForm = ({user,onChangeEmail, onChangePass, onLogin}) => {
     
         const buttonStyle = {
             width: "20vw",
@@ -19,8 +19,8 @@ const LoginForm = ({user,onChangeEmail, onChangePass, ownerLogin, ctLogin}) => {
                 </label>
                 <br />
                 
-                <button className="btn btn-primary" onClick={ownerLogin}>Login as Pet Owner</button><br />
-                <button className="btn btn-primary" onClick={ctLogin}>Login as Caretaker</button><br />
+                <button className="btn btn-primary" style={buttonStyle} onClick={onLogin}>Login</button><br />
+                
             </form>
         );
     

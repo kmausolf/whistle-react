@@ -173,16 +173,15 @@ class UserApi {
                 else{
                     //Otherwise create the user
                     user.id = generateId(user);
+                    user.avatar_url = 'https://i.imgur.com/jNNT4LE.png';
+                    user.title = "";
                     users.push(user);
                 }
                 
                 //save this user since they are logged in
                 localStorage.clear(); //remove previously logged in user (will be implemented in log out)
-                var deepUserCpy = users.find(function(usr) {
-                    return usr.email === user.email && usr.pass === user.pass;
-                  });
                 //we want to save fields like name etc.
-                localStorage.setItem('currUser', JSON.stringify(deepUserCpy));
+                localStorage.setItem('currUser', JSON.stringify(user));
 
                 resolve(user);
             },delay);

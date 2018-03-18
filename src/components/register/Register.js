@@ -22,6 +22,7 @@ constructor(props){
     this.handleChange = this.handleChange.bind(this);
     this.ownerReg = this.ownerReg.bind(this);
     this.ctReg = this.ctReg.bind(this);
+    this.handleReg = this.handleReg.bind(this);
   }
 
   handleChange(event){
@@ -60,26 +61,31 @@ constructor(props){
   }
   
   ownerReg(event){
-      event.preventDefault();
+      //event.preventDefault();
       let user = Object.assign({}, this.state.user);
       user.isOwner = true;
 
       this.setState({user: user});
       
-      this.saveUser();
+     // this.saveUser();
   }
 
   ctReg(event){
-      event.preventDefault();
+     // event.preventDefault();
       let user = Object.assign({}, this.state.user);
       user.isOwner = false;
 
       this.setState({user: user});
 
+     // this.saveUser();
+  }
+  handleReg(event){
+      event.preventDefault();
       this.saveUser();
   }
 
   saveUser(){
+       
       if(!this.regFormIsValid()){
           return;
       }
@@ -114,6 +120,7 @@ constructor(props){
             onChange={this.handleChange}
             ownerReg={this.ownerReg}
             ctReg={this.ctReg}
+            onSave={this.handleReg}
            /> 
         </div>
       </div>

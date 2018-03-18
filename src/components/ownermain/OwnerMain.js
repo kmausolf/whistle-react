@@ -13,8 +13,8 @@ class OwnerMain extends React.Component {
   render() {
 
     let currUser = JSON.parse(localStorage.getItem('currUser'));
-    //const {user} = this.props;
-   // alert(JSON.stringify(currUser));
+    
+    alert(JSON.stringify(currUser));
     return (
       <div>
       <div className="jumbotron">

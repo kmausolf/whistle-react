@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const RegisterForm = ({user, onChange, ownerReg, ctReg}) => {
+const RegisterForm = ({user, onChange, ownerReg, ctReg, onSave}) => {
 
     const buttonStyle = {
         width: "20vw",
@@ -19,8 +19,22 @@ const RegisterForm = ({user, onChange, ownerReg, ctReg}) => {
                 <input type="password" name="pass" value={user.pass} onChange={onChange} /><br />
             </label>
             <br />
-            <button className="btn btn-primary" onClick={ownerReg}>Register as Pet Owner</button><br />
-            <button className="btn btn-primary" onClick={ctReg}>Register as Caretaker</button><br />
+            <form>
+                <div className="radio">
+                <label>
+                    <input type="radio" value="option1" name="acctType" onClick={ownerReg}/>
+                    Register as Pet Owner
+                </label>
+                </div>
+                <div className="radio">
+                <label>
+                    <input type="radio" value="option2" name="acctType" onClick={ctReg}/>
+                    Register as Caretaker
+                </label> 
+                </div>
+                </form>
+           
+            <button className="btn btn-primary" onClick={onSave}>Register!</button><br />
         </form>
     );
 }
