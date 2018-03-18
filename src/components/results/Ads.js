@@ -82,9 +82,16 @@ class Ads extends React.Component {
 
           
           const users = this.props.users;
-         
-          const careTakers = users.filter(usr => usr.isOwner === false);
-          alert(JSON.stringify(careTakers));
+          
+          let k = 0;
+          let careTakers = users.filter(usr => usr.isOwner === false);
+          for(let i = 0; i < careTakers.length; i++){
+              careTakers[i].key = k++;
+              careTakers[i].name = careTakers[i].firstName + " " + careTakers[i].lastName;
+          }
+          
+          this.setState( { cards: careTakers});
+          //alert(JSON.stringify(this.state.cards));
         return(
             <div>
             <form>

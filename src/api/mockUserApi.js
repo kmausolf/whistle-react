@@ -11,7 +11,10 @@ const users = [
         email: 'rs@koth.com',
         pass: 'rs',
         isOwner: false,
-        threads: [0]
+        threads: [0],
+        avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
+        title: "Animal Caretaker",
+        bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
     },
     {
         id: 'hank-hill',
@@ -20,7 +23,10 @@ const users = [
         email: 'hh@koth.com',
         pass: 'hh',
         isOwner: false,
-        threads: [0, 1]
+        threads: [0, 1],
+        avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
+        title: "Animal Caretaker",
+        bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
     },
     {
         id: 'jeff-boomhauer',
@@ -29,7 +35,10 @@ const users = [
         email: 'jb@koth.com',
         pass: 'jb',
         isOwner: false,
-        threads: []
+        threads: [],
+        avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
+        title: "Animal Caretaker",
+        bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
     },
     {
         id: 'fred-flintstone',
