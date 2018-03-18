@@ -71,12 +71,18 @@ class Ads extends React.Component {
     }
 
     loadUsers(users) {
-//  const users = this.props.users;
-          alert(JSON.stringify(users));
+  //const users = this.props.users;
+          //alert(JSON.stringify(users));
           
           let k = 0;
           
-          let careTakers = users.filter(usr => usr.isOwner === false); //err could be from a shallow copy in here
+          let ct = users.filter(usr => usr.isOwner === false); //err could be from a shallow copy in here
+          let careTakers = [];
+          for (let i = 0; i < ct.length; i++){
+           careTakers[i] = this.getCopyOfUser(ct[i]);
+           
+          }
+          alert(JSON.stringify(careTakers));
           for(let i = 0; i < careTakers.length; i++){
               careTakers[i].key = k++;
               careTakers[i].name = careTakers[i].firstName + " " + careTakers[i].lastName;
@@ -84,13 +90,31 @@ class Ads extends React.Component {
           
           this.setState( { cards: careTakers}); 
     }
+    getCopyOfUser(user) {
+        // create and return a deep copy of user
+        var newUser = {};
+        newUser.id = user.id;
+        newUser.firstName = user.firstName;
+        newUser.lastName = user.lastName;
+        newUser.email = user.email;
+        newUser.pass = user.pass;
+        newUser.isOwner = user.isOwner;
+        newUser.threads = Object.assign({}, user.threads);
+        newUser.avatar_url = user.avatar_url;
+        newUser.title = user.title;
+        newUser.bio = user.bio;
+        return newUser;
+    }
 
     loadAction(){
+        const users = this.props.users;
+        this.loadUsers(users);
+        /*
         this.props.actions.loadUsers()
         .then((usrs) => this.loadUsers(usrs))
         .catch(error => {
           toastr.error(error);
-        });
+        }); */
     }
 
     render(){
