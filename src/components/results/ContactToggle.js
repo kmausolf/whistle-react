@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
+
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as threadActions from '../../actions/threadActions';
 
 //will have an on and off state.
 class ContactToggle extends React.Component {
     constructor(props){
         super(props);
-        this.state = { showing: false};
+        this.state = {
+            showing: false,
+            replyMessage: ""
+        };
         this.showTextArea = this.showTextArea.bind(this);
         this.hideTextArea = this.hideTextArea.bind(this);
+        this.handleReplyChange = this.handleReplyChange.bind(this);
     }
     
     showTextArea(){
@@ -15,7 +23,24 @@ class ContactToggle extends React.Component {
     }
 
     hideTextArea(){
-        this.setState({showing: false});
+        var userIDList = []
+        var senderID = JSON.parse(localStorage.getItem('currUser')).id
+        userIDList.push(senderID)
+        // need a way to get this card's user id
+        var message = this.state.replyMessage
+        this.props.actions.sendMessage(userIDList, senderID, message)
+        .then(() => this.props.update())
+        .catch(error => {
+            toastr.error(error);
+        }); 
+        this.setState({
+            showing: false,
+            replyMessage: ""
+        });
+    }
+
+    handleReplyChange(event) {
+        this.setState({replyMessage: event.target.value});
     }
 
     render() {
@@ -30,7 +55,7 @@ class ContactToggle extends React.Component {
         }
         else{
             button = <button onClick={this.hideTextArea}>Send</button>;
-            contactBox = <textarea rows="5" cols="50"></textarea>;
+            contactBox = <textarea id="reply-message" value={this.state.replyMessage} onChange={this.handleReplyChange}rows="5" cols="50"></textarea>;
         }
 
       return (
@@ -44,4 +69,22 @@ class ContactToggle extends React.Component {
   }
 
 
-export default ContactToggle;
+// export default ContactToggle;
+
+ContactToggle.propTypes = {
+    actions: PropTypes.object.isRequired
+  };
+  
+  
+  function mapStateToProps(state, ownProps) {
+    return{
+    };
+  }
+  
+  function mapDispatchToProps(dispatch){
+    return{
+      actions: bindActionCreators(threadActions, dispatch)
+    };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(ContactToggle);

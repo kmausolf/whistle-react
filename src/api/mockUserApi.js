@@ -14,7 +14,7 @@ const users = [
         threads: [0],
         avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
         title: "Animal Caretaker",
-        bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
+        bio: "I will walk or sit any type of animal. EXCEPT dog. No dog. Dog are off-limits."
     },
     {
         id: 'hank-hill',
@@ -38,7 +38,7 @@ const users = [
         threads: [],
         avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
         title: "Animal Caretaker",
-        bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
+        bio: "I will walk or sit any type of animal. EXCEPT cat. No cat. Cat are off-limits."
     },
     {
         id: 'fred-flintstone',
