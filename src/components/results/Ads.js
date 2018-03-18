@@ -73,10 +73,17 @@ class Ads extends React.Component {
     loadUsers(users) {
   //const users = this.props.users;
           //alert(JSON.stringify(users));
+
+          // make sure user is logged in
+            var currUser = JSON.parse(localStorage.getItem('currUser'))
+            if(currUser == null) {
+                toastr.error("Please log in first");
+                browserHistory.push('/');
+            }
           
           let k = 0;
           
-          let ct = users.filter(usr => usr.isOwner === false); //err could be from a shallow copy in here
+          let ct = users.filter(usr => usr.isOwner === false && usr.id !== currUser.id); //err could be from a shallow copy in here
           let careTakers = [];
           for (let i = 0; i < ct.length; i++){
            careTakers[i] = this.getCopyOfUser(ct[i]);
