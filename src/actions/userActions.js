@@ -25,26 +25,11 @@ export function setCurrUser(currUser){
 }
 //will set currUser when user logs in. currUser field is now set in the store.
 
-export function getUserSuccess(user) {
-    return {type: types.GET_USER_SUCCESS, currUser}; 
-}
-
 export function loadUsers(){
     return function(dispatch){
         dispatch(beginAjaxCall());
         return userApi.getAllUsers().then(users => {
             dispatch(loadUsersSuccess(users));
-        }).catch(error => {
-            throw(error);
-        });
-    };
-}
-
-export function getUser(id){
-    return function(dispatch){
-        dispatch(beginAjaxCall());
-        return userApi.getUser(is).then(user => {
-            dispatch(getUserSuccess(user));
         }).catch(error => {
             throw(error);
         });

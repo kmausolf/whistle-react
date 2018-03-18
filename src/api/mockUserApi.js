@@ -10,7 +10,8 @@ const users = [
         lastName: 'Shackleford',
         email: 'rs@koth.com',
         pass: 'rs',
-        isOwner: false
+        isOwner: false,
+        threads: [0]
     },
     {
         id: 'hank-hill',
@@ -18,7 +19,8 @@ const users = [
         lastName: 'Hill',
         email: 'hh@koth.com',
         pass: 'hh',
-        isOwner: false
+        isOwner: false,
+        threads: [0, 1]
     },
     {
         id: 'jeff-boomhauer',
@@ -26,7 +28,8 @@ const users = [
         lastName: 'Boomhauer',
         email: 'jb@koth.com',
         pass: 'jb',
-        isOwner: false
+        isOwner: false,
+        threads: []
     },
     {
         id: 'fred-flintstone',
@@ -34,7 +37,8 @@ const users = [
         lastName: 'Flintstone',
         email: 'ff@stone.com',
         pass: 'ff',
-        isOwner: true
+        isOwner: true,
+        threads: [1]
     },
     {
         id: 'barney-rubble',
@@ -42,7 +46,8 @@ const users = [
         lastName: 'Rubble',
         email: 'br@stone.com',
         pass: 'br',
-        isOwner: true
+        isOwner: true,
+        threads: []
     },
     {
         id: 'bambam-flintstone',
@@ -50,13 +55,26 @@ const users = [
         lastName: 'Flintstone',
         email: 'bb@stone.com',
         pass: 'bb',
-        isOwner: true
+        isOwner: true,
+        threads: []
     }
 ];
 
 const generateId = (user) => {
     return user.firstName.toLowerCase() + '-' + user.lastName.toLowerCase();
 };
+
+function getCopyOfUser(user) {
+    // create and return a deep copy of user
+    var newUser = {};
+    newUser.id = user.id;
+    newUser.firstName = user.firstName;
+    newUser.lastName = user.lastName;
+    newUser.email = user.email;
+    newUser.pass = user.pass;
+    newUser.isOwner = user.isOwner;
+    newUser.threads = Object.assign({}, user.threads);
+}
 
 class UserApi {
     static getAllUsers() {
@@ -67,24 +85,13 @@ class UserApi {
         });
     }
 
-    static getCopyOfUser(user) {
-        // create and return a deep copy of user
-        var newUser = {};
-        newUser.id = user.id;
-        newUser.firstName = user.firstName;
-        newUser.lastName = lastName;
-        newUser.email = user.email;
-        newUser.pass = user.pass;
-        newUser.isOwner = user.isOwner;
-    }
-
     static getUser(id) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 var user = {};
                 for(var i = 0; i < Object.keys(users).length; i++) {
                     if(users[i].id == id) {
-                        user = getCopyOfUser(user[i]);
+                        user = getCopyOfUser(users[i]);
                         break;
                     }
                 }
