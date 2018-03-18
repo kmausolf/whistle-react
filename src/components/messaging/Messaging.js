@@ -9,7 +9,7 @@ import MessageBoard from './messageBoard';
 class Messaging extends React.Component{
   constructor(props){
     super(props);
-    if (localStorage.getItem('currUser') !== "undefined") {
+    if (localStorage.getItem('currUser') !== null) {
       this.props.actions.getThreadsByUser(JSON.parse(localStorage.getItem('currUser')).id)
     }
     
