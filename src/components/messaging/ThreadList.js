@@ -16,18 +16,27 @@ class ThreadList extends React.Component {
             width:"100%"
             
         };
-        return (
-            <div>
-                {this.props.threads.map(thread =>
-                    <div key={thread.tid} style={cardStyle}>
-                        <ThreadCard 
-                            thread = {thread}
-                            actions = {this.props.actions}
-                        />
-                    </div>
-                )}
-            </div>
-        );
+        if(this.props.threads.length == 0) {
+            return (
+                <div>
+                    <p>You have no messages!</p>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div>
+                    {this.props.threads.map(thread =>
+                        <div key={thread.tid} style={cardStyle}>
+                            <ThreadCard 
+                                thread = {thread}
+                                actions = {this.props.actions}
+                            />
+                        </div>
+                    )}
+                </div>
+            );
+        }
     }
 
 };
