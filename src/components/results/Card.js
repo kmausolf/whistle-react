@@ -21,7 +21,7 @@ const Card = (props) => {
                 </center></div> 
                 <br />
 
-                <center> <ContactToggle /> </center>
+                <center> <ContactToggle Name={props.name}/> </center>
           
 
         </div>

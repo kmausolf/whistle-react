@@ -117,6 +117,20 @@ class UserApi {
         });
     }
 
+    //non promise version
+    static getUserById(id){
+       
+        var user = {};
+        for(var i = 0; i < Object.keys(users).length; i++) {
+            alert(users[i].id.toString() +" vs. my "+id)
+            if(users[i].id.toString() === id.toString()) {
+                
+                user = getCopyOfUser(users[i]);
+                break;
+            }
+        }
+        return user;
+    }
     static userIDExist(id) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
