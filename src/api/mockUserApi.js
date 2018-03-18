@@ -14,7 +14,7 @@ const users = [
         threads: [0],
         avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
         title: "Animal Caretaker",
-        bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
+        bio: "I will walk or sit any type of animal. EXCEPT dog. No dog. Dog are off-limits."
     },
     {
         id: 'hank-hill',
@@ -24,9 +24,14 @@ const users = [
         pass: 'hh',
         isOwner: false,
         threads: [0, 1],
-        avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
-        title: "Animal Caretaker",
-        bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
+        avatar_url: "https://i.imgur.com/LbDUJDk.jpg",
+             title: "Professional Animal Handler",
+        bio: "Professional pet caretaker. 25 years of experience at the SF Zoo. \n" +
+            "The mission of San Francisco Zoo & Gardens is to Connect people with wildlife, "
+             +"inspire Caring for nature and advance Conservation action." +
+             " Open 365 days a year, San Francisco Zoo is home to more than 2,000 exotic, "+
+            " endangered and rescued animals in 100 acres of majestic and peaceful gardens located "+
+           "directly on the Pacific Coast."
     },
     {
         id: 'jeff-boomhauer',
@@ -36,9 +41,10 @@ const users = [
         pass: 'jb',
         isOwner: false,
         threads: [],
-        avatar_url: "https://i.imgur.com/5mXfwr1.jpg",
-        title: "Animal Caretaker",
-        bio: "I will walk or sit any type of animal. EXCEPT fish. No fish. Fish are off-limits."
+        avatar_url: "https://i.imgur.com/7qG7Nc7.jpg",
+         title: "Fitness Enthusiast and Animal Lover",
+        bio: "I'd love to take your pet on my morning jogging routine. I am looking for dogs who like to run. "+
+         "Preferrably large dogs so I do not accidentally kick them. I am extremely fast and powerful, I hope your pet can keep up."
     },
     {
         id: 'fred-flintstone',

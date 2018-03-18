@@ -65,7 +65,7 @@ class MessageApi {
                 if(mid < 0 || mid >= Object.keys(messages).length) {
                     reject('Message requested does not exist.')
                 }
-                resolve(messages[mid])
+                resolve(Object.assign({}, messages[mid]))
             },delay);
         });
     }

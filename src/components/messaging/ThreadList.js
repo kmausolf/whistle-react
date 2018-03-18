@@ -1,11 +1,17 @@
 import React, {PropTypes} from 'react';
+import { Link } from 'react-router';
 
 import ThreadCard from "./ThreadCard";
 
 class ThreadList extends React.Component {
     constructor(props) {
       super(props);
+    //   this.newMessage = this.send.newMessage(this);
     }
+
+    // newMessage() {
+
+    // }
 
     render() {
         const cardStyle = {
@@ -26,6 +32,7 @@ class ThreadList extends React.Component {
         else {
             return (
                 <div>
+                    {/* <button onClick={this.newMessage}>Send New Message</button> */}
                     {this.props.threads.map(thread =>
                         <div key={thread.tid} style={cardStyle}>
                             <ThreadCard 

@@ -1,11 +1,9 @@
 import React, {PropTypes} from 'react';
-
+import { Link } from 'react-router';
 import userApi from '../../api/mockUserApi';
 import threadApi from '../../api/threadApi';
 import messageApi from '../../api/mockMessageApi';
 import ReplyToggle from './ReplyToggle';
-
-var name = ""
 
 class ThreadCard extends React.Component {
     constructor(props) {
@@ -18,6 +16,7 @@ class ThreadCard extends React.Component {
 
         this.loadUserNames(this.props.thread.users);
         this.getLastMessage = this.getLastMessage.bind(this);
+        this.getLastMessage();
     }
 
     loadUserNames(userIDs) {
@@ -59,9 +58,8 @@ class ThreadCard extends React.Component {
                 <left>
                     <p>From:
                     {this.state.userNames.map(name =>
-                        <nobr> {name} | </nobr>
+                        <nobr> {name} </nobr>
                     )}</p>
-                    {this.getLastMessage()}
                     <p>Last Message: {this.state.lastMessage}</p>
                     
                 </left>
@@ -69,7 +67,16 @@ class ThreadCard extends React.Component {
                 <ReplyToggle
                     thread = {this.props.thread}
                     actions = {this.props.actions}
+                    update = {() => this.getLastMessage()}
                 />
+                <Link to={{
+                    pathname: '/thread',
+                    state: {
+                        threadID: this.props.thread.tid
+                    }
+                    }}>
+                    <button>See Full Message Thread</button>
+                </Link>
                 </center>
             </div>
         );

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
-import userApi from '../../api/mockUserApi';
+
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as threadActions from '../../actions/threadActions';
+import toastr from 'toastr';
+
+
 //will have an on and off state.
 class ContactToggle extends React.Component {
     constructor(props){
         super(props);
-        this.state = { showing: false};
+        this.state = {
+            showing: false,
+            replyMessage: ""
+        };
         this.showTextArea = this.showTextArea.bind(this);
         this.hideTextArea = this.hideTextArea.bind(this);
+        this.handleReplyChange = this.handleReplyChange.bind(this);
     }
     
     showTextArea(){
@@ -15,21 +25,24 @@ class ContactToggle extends React.Component {
     }
 
     hideTextArea(){
-        this.setState({showing: false});
-        //send request to user
-        
-        //sending is based on first last... lol, hope no one has a weird name. whatever it's past midnight.
-        let fullname = JSON.stringify(this.props.Name).split(" ");
-        let first = fullname[0];
-        let last = fullname[1];
-        let send_to_id = first.toLowerCase() + '-' + last.toLowerCase();
-        let currUser = JSON.parse(localStorage.getItem('currUser'));
-        let sender_id = currUser.id;
+        var userIDList = []
+        var senderID = JSON.parse(localStorage.getItem('currUser')).id
+        userIDList.push(senderID)
+        userIDList.push(this.props.uid)
+        var message = this.state.replyMessage
+        this.props.actions.sendMessage(userIDList, senderID, message)
+        .then(() => toastr.success("Message Sent!"))
+        .catch(error => {
+            toastr.error(error);
+        }); 
+        this.setState({
+            showing: false,
+            replyMessage: ""
+        });
+    }
 
-        let ids = [sender_id, send_to_id];
-        //TODO implement message sending
-        //this.props.actions.sendMessage(ids, sender_id, "Hi "+fullname+". I'd like to hire you.");
-        //then we would call message to send 
+    handleReplyChange(event) {
+        this.setState({replyMessage: event.target.value});
     }
 
     render() {
@@ -44,7 +57,7 @@ class ContactToggle extends React.Component {
         }
         else{
             button = <button onClick={this.hideTextArea}>Send</button>;
-            contactBox = <textarea rows="5" cols="50"></textarea>;
+            contactBox = <textarea id="reply-message" value={this.state.replyMessage} onChange={this.handleReplyChange}rows="5" cols="50"></textarea>;
         }
 
       return (
@@ -58,4 +71,23 @@ class ContactToggle extends React.Component {
   }
 
 
-export default ContactToggle;
+// export default ContactToggle;
+
+ContactToggle.propTypes = {
+    actions: PropTypes.object.isRequired,
+    uid: React.PropTypes.string.isRequired
+  };
+  
+  
+  function mapStateToProps(state, ownProps) {
+    return{
+    };
+  }
+  
+  function mapDispatchToProps(dispatch){
+    return{
+      actions: bindActionCreators(threadActions, dispatch)
+    };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(ContactToggle);

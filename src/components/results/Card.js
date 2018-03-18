@@ -21,8 +21,12 @@ const Card = (props) => {
                 </center></div> 
                 <br />
 
-                <center> <ContactToggle Name={props.name}/> </center>
-          
+                <center>
+                    
+                    <ContactToggle
+                        uid = {props.id}
+                    />
+                </center>
 
         </div>
     );
@@ -32,7 +36,8 @@ Card.propTypes = {
     avatar_url: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired,
-    bio: React.PropTypes.string.isRequired
+    bio: React.PropTypes.string.isRequired,
+    id: React.PropTypes.string.isRequired
 };
 
 export default Card;
