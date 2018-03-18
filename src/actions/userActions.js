@@ -64,3 +64,18 @@ export function saveUser(user) {
     };
 }
 
+export function updateUser(user) {
+    
+    return function(dispatch, getState) {
+        dispatch(beginAjaxCall());
+        return userApi.updateUser(user).then(user => {
+                dispatch(updateUserSuccess(user));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw(error);
+        });
+    };
+}
+
+
+

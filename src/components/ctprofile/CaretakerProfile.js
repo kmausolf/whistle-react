@@ -1,13 +1,25 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as userActions from '../../actions/userActions';
+import toastr from 'toastr';
 
 class CaretakerProfile extends React.Component {
   constructor(props){
     super(props);
-    this.state = { pic:"https://i.imgur.com/jNNT4LE.png"};
+    
 
     this.changeProfilePic = this.changeProfilePic.bind(this);
+    this.currUser = JSON.parse(localStorage.getItem('currUser'));
+   
+    this.state = { pic: this.currUser.avatar_url};
  
+  }
+
+  loadProfileInfo() {
+    
+
   }
 
   changeProfilePic() {
@@ -63,4 +75,11 @@ class CaretakerProfile extends React.Component {
   }
 }
 
-export default CaretakerProfile;
+
+function mapDispatchToProps(dispatch){
+  return{
+      actions: bindActionCreators(userActions, dispatch)
+  };
+}
+
+export default connect(mapDispatchToProps)(CaretakerProfile);
