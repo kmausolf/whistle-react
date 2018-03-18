@@ -13,7 +13,7 @@ class CaretakerProfile extends React.Component {
     this.changeProfilePic = this.changeProfilePic.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.currUser = JSON.parse(localStorage.getItem('currUser'));
-   
+    this.changeBio = this.changeBio.bind(this);
     this.state = { pic: this.currUser.avatar_url};
  
   }
@@ -25,10 +25,11 @@ class CaretakerProfile extends React.Component {
     .catch(error => {
       toastr.error(error);
     });
-   
+    localStorage.setItem('currUser', JSON.stringify(this.currUser));
     
-    let test = JSON.parse(localStorage.getItem('currUser'));
-    alert(JSON.stringify(test));
+    
+   
+    //alert(JSON.stringify(test));
   }
 
   changeProfilePic() {
@@ -38,14 +39,17 @@ class CaretakerProfile extends React.Component {
      {pic:picLink}
   
     );
-    this.currUser.avatar_url = this.state.pic;
-    localStorage.setItem('currUser', JSON.stringify(this.currUser));
-    
+    this.currUser.avatar_url = picLink;
+   
     this.updateUser();
-    
-    
   }
   
+  changeBio(event) {
+    //alert(event.target.value);
+    this.currUser.bio = event.target.value;
+    this.updateUser();
+
+  }
 
   render() {
     const borderStyle = {
@@ -81,7 +85,7 @@ class CaretakerProfile extends React.Component {
           <br/>
           
           Personal Bio:<br/>
-          <textarea rows="5" cols="50" id="personal-bio"  placeholder="Enter Bio Here..."></textarea>
+          <textarea rows="5" cols="50" id="personal-bio" onChange={this.changeBio} placeholder="Enter Bio Here..."></textarea>
               </center> </div></form>
       </div>
      

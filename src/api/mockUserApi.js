@@ -165,7 +165,7 @@ class UserApi {
 
     //updates a user's properties
     static updateUser(updated_user){
-        alert("update 2");
+        //alert("update 2");
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                
@@ -173,8 +173,7 @@ class UserApi {
                     if(users[i].id == updated_user.id) {
                         
                         users[i] = updated_user; //replace the old version of the user with the new one. Should push pointer to original
-                        alert("update 3" + JSON.stringify(users));
-                        alert(JSON.stringify(users[i]));
+                       
                         break;
                     }
                 }
