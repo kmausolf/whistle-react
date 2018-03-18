@@ -15,7 +15,7 @@ class CaretakerProfile extends React.Component {
     this.currUser = JSON.parse(localStorage.getItem('currUser'));
     this.changeBio = this.changeBio.bind(this);
     this.state = { pic: this.currUser.avatar_url};
- 
+    this.changeTitle = this.changeTitle.bind(this);
   }
 
 
@@ -48,7 +48,10 @@ class CaretakerProfile extends React.Component {
     //alert(event.target.value);
     this.currUser.bio = event.target.value;
     this.updateUser();
-
+  }
+  changeTitle(event){
+    this.currUser.title = event.target.value;
+    this.updateUser();
   }
 
   render() {
@@ -82,6 +85,7 @@ class CaretakerProfile extends React.Component {
           Address: <input type="text" id="address" /><br />
           Phone Number: <input type="text" id="phone" /><br />
           Email Address: <input type="text" id="email" /><br/>
+          Title: <input type="text" id="title" onChange={this.changeTitle}/><br/>
           <br/>
           
           Personal Bio:<br/>
