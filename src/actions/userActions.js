@@ -69,7 +69,7 @@ export function updateUser(user) {
     return function(dispatch, getState) {
         dispatch(beginAjaxCall());
         return userApi.updateUser(user).then(user => {
-                dispatch(updateUserSuccess(user));
+                dispatch(loadUsersSuccess(users));
         }).catch(error => {
             dispatch(ajaxCallError(error));
             throw(error);

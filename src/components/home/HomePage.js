@@ -33,7 +33,7 @@ handleChange(event){
 
 loginUser(event){
   event.preventDefault();
-  alert(JSON.stringify(this.state.user));
+  //alert(JSON.stringify(this.state.user));
   
   this.props.actions.validateUser(this.state.user)
   .then(() => this.redirect())   //redirects when finished. rejections won't call redirect?
@@ -46,7 +46,7 @@ loginUser(event){
 redirect(){
   let currUser = JSON.parse(localStorage.getItem('currUser'));
   let isOwner = currUser.isOwner;
-  alert(isOwner);
+ // alert(isOwner);
   toastr.success('Login Successful!');
   if(isOwner){
      

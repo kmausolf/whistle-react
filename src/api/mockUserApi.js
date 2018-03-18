@@ -148,7 +148,7 @@ class UserApi {
         },delay);
     }
 
-
+/*
     //updates a user's properties
     static updateUser(updated_user){
         
@@ -166,12 +166,12 @@ class UserApi {
                 }
                 else {
                      
-                    resolve(updated_user);
+                    resolve(users);
                 }
             }, delay);
         });
     
-    }
+    }*/
 
     static saveUser(user) {
         //Make a deep copy of the object passed in to prevent modification

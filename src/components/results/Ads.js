@@ -13,6 +13,8 @@ class Ads extends React.Component {
         this.state = { cards: [] };
 
         this.loadCards = this.loadCards.bind(this);
+        this.loadUsers = this.loadUsers.bind(this);
+        this.loadAction = this.loadAction.bind(this);
     }
 
     loadCards() {
@@ -68,8 +70,32 @@ class Ads extends React.Component {
         }));
     }
 
+    loadUsers(users) {
+//  const users = this.props.users;
+          alert(JSON.stringify(users));
+          
+          let k = 0;
+          
+          let careTakers = users.filter(usr => usr.isOwner === false); //err could be from a shallow copy in here
+          for(let i = 0; i < careTakers.length; i++){
+              careTakers[i].key = k++;
+              careTakers[i].name = careTakers[i].firstName + " " + careTakers[i].lastName;
+          }
+          
+          this.setState( { cards: careTakers}); 
+    }
+
+    loadAction(){
+        this.props.actions.loadUsers()
+        .then((usrs) => this.loadUsers(usrs))
+        .catch(error => {
+          toastr.error(error);
+        });
+    }
 
     render(){
+        
+       
         const searchStyle = {
             float: "right",
             width: "35%",
@@ -81,23 +107,13 @@ class Ads extends React.Component {
           };
 
           
-          const users = this.props.users;
-          alert(JSON.stringify(users));
-          let k = 0;
-          /*
-          let careTakers = users.filter(usr => usr.isOwner === false); //err could be from a shallow copy in here
-          for(let i = 0; i < careTakers.length; i++){
-              careTakers[i].key = k++;
-              careTakers[i].name = careTakers[i].firstName + " " + careTakers[i].lastName;
-          }
-          
-          this.setState( { cards: careTakers});*/
+        
           //alert(JSON.stringify(this.state.cards));
         return(
             <div>
             <form>
              Search for a specific name, location...
-            <button style= {searchButtonStyle} onClick={this.loadCards}  type="button">Search</button>
+            <button style= {searchButtonStyle} onClick={this.loadAction}  type="button">Search</button>
             <input style={searchStyle} type="text" placeholder="Enter a tag..." />
             
           </form> 
