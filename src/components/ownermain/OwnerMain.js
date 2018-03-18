@@ -14,7 +14,7 @@ class OwnerMain extends React.Component {
 
     let currUser = JSON.parse(localStorage.getItem('currUser'));
     
-    alert(JSON.stringify(currUser));
+   // alert(JSON.stringify(currUser));
     return (
       <div>
       <div className="jumbotron">
@@ -34,8 +34,8 @@ class OwnerMain extends React.Component {
     );
   }
 }
-
-
+export default OwnerMain;
+/*
 function mapStateToProps(state, ownProps) {
   return{
       user: state.user
@@ -48,4 +48,4 @@ function mapDispatchToProps(dispatch){
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OwnerMain);
+export default connect(mapStateToProps, mapDispatchToProps)(OwnerMain); */

@@ -162,6 +162,34 @@ class UserApi {
         },delay);
     }
 
+
+    //updates a user's properties
+    static updateUser(updated_user){
+        alert("update 2");
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+               
+                for(let i = 0; i < Object.keys(users).length; i++) {
+                    if(users[i].id == updated_user.id) {
+                        
+                        users[i] = updated_user; //replace the old version of the user with the new one. Should push pointer to original
+                        alert("update 3" + JSON.stringify(users));
+                        alert(JSON.stringify(users[i]));
+                        break;
+                    }
+                }
+                if(updated_user == {}) {
+                    reject('User does not exist');
+                }
+                else {
+                     
+                    resolve(users);
+                }
+            }, delay);
+        });
+
+    }
+
     static saveUser(user) {
         //Make a deep copy of the object passed in to prevent modification
         user = Object.assign({}, user);

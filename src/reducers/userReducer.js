@@ -23,12 +23,18 @@ export default function userReducer(state = initialState.users, action){
                 Object.assign({}, action.user)
             ];
         
+            /*
         case types.UPDATE_USER_SUCCESS:
             return[
                 ...state.filter(user => user.id !== action.user.id),
                 Object.assign({}, action.user)
+            ];*/
+            
+        case types.UPDATE_USER_SUCCESS:
+            return[
+                ...state,
+                Object.assign({}, action.user)
             ];
-        
         default:
             return state;
     }

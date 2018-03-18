@@ -41,6 +41,7 @@ export function validateUser(user){
     return function(dispatch){
         return userApi.validateUser(user).then(response => {
             dispatch(validateUserSuccess(response));
+            dispatch(loadUsers());
             //dispatch(setCurrUser(user));
         }).catch(error => {
             throw(error);
@@ -57,10 +58,27 @@ export function saveUser(user) {
             //we don't need this feature for now. A new user is a new user.
             //user.id ? dispatch(updateUserSuccess(user)) :
                 dispatch(createUserSuccess(user));
+                dispatch(loadUsers()); //update store's users with new user
         }).catch(error => {
             dispatch(ajaxCallError(error));
             throw(error);
         });
     };
 }
+
+
+export function updateUser(user) {
+    alert("update 1");
+    return function(dispatch, getState) {
+        dispatch(beginAjaxCall());
+        return userApi.updateUser(user).then(users => {
+                dispatch(loadUsers());
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw(error);
+        });
+    };
+}
+
+
 

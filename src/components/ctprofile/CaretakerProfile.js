@@ -1,22 +1,49 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as userActions from '../../actions/userActions';
+import toastr from 'toastr';
 
 class CaretakerProfile extends React.Component {
   constructor(props){
     super(props);
-    this.state = { pic:"https://i.imgur.com/jNNT4LE.png"};
+    
 
     this.changeProfilePic = this.changeProfilePic.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+    this.currUser = JSON.parse(localStorage.getItem('currUser'));
+   
+    this.state = { pic: this.currUser.avatar_url};
  
+  }
+
+
+  updateUser() {
+    
+    this.props.actions.updateUser(this.currUser)
+    .catch(error => {
+      toastr.error(error);
+    });
+   
+    
+    let test = JSON.parse(localStorage.getItem('currUser'));
+    alert(JSON.stringify(test));
   }
 
   changeProfilePic() {
     var picLink = prompt("Please enter the URL for your picture", "");
-   
-    this.setState((prevState) => ({
-     pic:picLink
+    
+    this.setState(
+     {pic:picLink}
   
-    }));
+    );
+    this.currUser.avatar_url = this.state.pic;
+    localStorage.setItem('currUser', JSON.stringify(this.currUser));
+    
+    this.updateUser();
+    
+    
   }
   
 
@@ -62,5 +89,16 @@ class CaretakerProfile extends React.Component {
     );
   }
 }
+function mapStateToProps(state, ownProps) {
+  //alert("mapState to props: "+JSON.stringify(state.users));
+  return{
+      users: state.users
+  };
+}
+function mapDispatchToProps(dispatch){
+  return{
+      actions: bindActionCreators(userActions, dispatch)
+  };
+}
 
-export default CaretakerProfile;
+export default connect(mapStateToProps, mapDispatchToProps)(CaretakerProfile);
