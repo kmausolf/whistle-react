@@ -18,9 +18,6 @@ class CaretakerProfile extends React.Component {
  
   }
 
-  loadProfileInfo() {
-    
-  }
 
   updateUser() {
     
@@ -37,10 +34,10 @@ class CaretakerProfile extends React.Component {
   changeProfilePic() {
     var picLink = prompt("Please enter the URL for your picture", "");
     
-    this.setState((prevState) => ({
-     pic:picLink
+    this.setState(
+     {pic:picLink}
   
-    }));
+    );
     this.currUser.avatar_url = this.state.pic;
     localStorage.setItem('currUser', JSON.stringify(this.currUser));
     
@@ -92,12 +89,16 @@ class CaretakerProfile extends React.Component {
     );
   }
 }
-
-
+function mapStateToProps(state, ownProps) {
+  //alert("mapState to props: "+JSON.stringify(state.users));
+  return{
+      users: state.users
+  };
+}
 function mapDispatchToProps(dispatch){
   return{
       actions: bindActionCreators(userActions, dispatch)
   };
 }
 
-export default connect(mapDispatchToProps)(CaretakerProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(CaretakerProfile);

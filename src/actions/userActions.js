@@ -68,7 +68,7 @@ export function saveUser(user) {
 
 
 export function updateUser(user) {
-    
+    alert("update 1");
     return function(dispatch, getState) {
         dispatch(beginAjaxCall());
         return userApi.updateUser(user).then(users => {
