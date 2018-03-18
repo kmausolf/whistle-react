@@ -162,14 +162,14 @@ class UserApi {
         },delay);
     }
 
-/*
+
     //updates a user's properties
     static updateUser(updated_user){
         
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                
-                for(var i = 0; i < Object.keys(users).length; i++) {
+                for(let i = 0; i < Object.keys(users).length; i++) {
                     if(users[i].id == updated_user.id) {
                         users[i] = updated_user; //replace the old version of the user with the new one. Should push pointer to original
                         break;
@@ -184,8 +184,8 @@ class UserApi {
                 }
             }, delay);
         });
-    
-    }*/
+
+    }
 
     static saveUser(user) {
         //Make a deep copy of the object passed in to prevent modification

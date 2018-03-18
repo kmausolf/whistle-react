@@ -23,20 +23,27 @@ class CaretakerProfile extends React.Component {
   }
 
   updateUser() {
+    
     this.props.actions.updateUser(this.currUser)
     .catch(error => {
       toastr.error(error);
     });
-    localStorage.setItem('currUser', JSON.stringify(this.currUser));
+   
+    
+    let test = JSON.parse(localStorage.getItem('currUser'));
+    alert(JSON.stringify(test));
   }
 
   changeProfilePic() {
     var picLink = prompt("Please enter the URL for your picture", "");
-    this.currUser.avatar_url = this.state.pic;
+    
     this.setState((prevState) => ({
      pic:picLink
   
     }));
+    this.currUser.avatar_url = this.state.pic;
+    localStorage.setItem('currUser', JSON.stringify(this.currUser));
+    
     this.updateUser();
     
     
