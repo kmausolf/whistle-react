@@ -17,9 +17,8 @@ class Thread extends React.Component {
             <div className="jumbotron">
                 <h1><center>Message Thread</center></h1>
             </div>
-            {console.log(this.props.location.state)}
             <ThreadBoard 
-                thread = {this.props.threads[this.props.location.state.threadID]}
+                thread = {this.props.threads.filter(t => t.tid === this.props.location.state.threadID)[0]}
                 actions = {this.props.actions}
             />
         </div>
@@ -29,7 +28,6 @@ class Thread extends React.Component {
 
 Thread.propTypes = {
     actions: PropTypes.object.isRequired,
-    threadID: PropTypes.number.isRequired,
     threads: PropTypes.array.isRequired
 };
 

@@ -29,7 +29,6 @@ class ContactToggle extends React.Component {
         var senderID = JSON.parse(localStorage.getItem('currUser')).id
         userIDList.push(senderID)
         userIDList.push(this.props.uid)
-        console.log(userIDList)
         var message = this.state.replyMessage
         this.props.actions.sendMessage(userIDList, senderID, message)
         .then(() => toastr.success("Message Sent!"))

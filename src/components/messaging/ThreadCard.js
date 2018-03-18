@@ -69,11 +69,10 @@ class ThreadCard extends React.Component {
                     actions = {this.props.actions}
                     update = {() => this.getLastMessage()}
                 />
-
                 <Link to={{
                     pathname: '/thread',
                     state: {
-                        threadID: this.props.thread.tid,
+                        threadID: this.props.thread.tid
                     }
                     }}>
                     <button>See Full Message Thread</button>

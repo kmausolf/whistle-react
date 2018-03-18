@@ -58,12 +58,13 @@ function findThread(usersList) {
 
 function getThreadsByUserL(userID) {
     var threadsArray = [];
+    var num = 0;
     for(var i = 0; i < Object.keys(threads).length; i++) {
         if(threads[i].users.indexOf(userID) != -1) {
             threadsArray.push({});
-            threadsArray[i].tid = threads[i].tid;
-            threadsArray[i].users = Object.assign([], threads[i].users);
-            threadsArray[i].messages = Object.assign([], threads[i].messages);
+            threadsArray[num].tid = threads[i].tid;
+            threadsArray[num].users = Object.assign([], threads[i].users);
+            threadsArray[num++].messages = Object.assign([], threads[i].messages);
         }
     }
     return threadsArray;
@@ -83,13 +84,14 @@ function sendMessageL(userList, senderID, message) {
         tid = generateTreadId();
 
         newThread.tid = tid;
-        newThread.users = usersListUniquel;
-        newThread.message = [];
+        newThread.users = usersListUnique;
+        newThread.messages = [];
 
         threads.push(newThread);
     }
 
     threads[tid].messages.unshift(messageApi.sendMessage(tid, senderID, message));
+
 }
 
 class ThreadApi {
@@ -112,12 +114,13 @@ class ThreadApi {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 var threadsArray = [];
+                var num = 0;
                 for(var i = 0; i < Object.keys(threads).length; i++) {
                     if(threads[i].users.indexOf(userId) != -1) {
                         threadsArray.push({});
-                        threadsArray[i].tid = threads[i].tid;
-                        threadsArray[i].users = Object.assign([], threads[i].users);
-                        threadsArray[i].messages = Object.assign([], threads[i].messages);
+                        threadsArray[num].tid = threads[i].tid;
+                        threadsArray[num].users = Object.assign([], threads[i].users);
+                        threadsArray[num++].messages = Object.assign([], threads[i].messages);
                     }
                 }
                 resolve(threadsArray);
