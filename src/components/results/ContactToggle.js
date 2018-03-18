@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as threadActions from '../../actions/threadActions';
 
+
 //will have an on and off state.
 class ContactToggle extends React.Component {
     constructor(props){
@@ -26,7 +27,8 @@ class ContactToggle extends React.Component {
         var userIDList = []
         var senderID = JSON.parse(localStorage.getItem('currUser')).id
         userIDList.push(senderID)
-        // need a way to get this card's user id
+        userIDList.push(this.props.uid)
+        console.log(userIDList)
         var message = this.state.replyMessage
         this.props.actions.sendMessage(userIDList, senderID, message)
         .then(() => this.props.update())
@@ -72,7 +74,8 @@ class ContactToggle extends React.Component {
 // export default ContactToggle;
 
 ContactToggle.propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    uid: React.PropTypes.string.isRequired
   };
   
   

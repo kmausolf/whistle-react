@@ -6,16 +6,18 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions';
 import toastr from 'toastr';
+import {browserHistory} from 'react-router';
 
 
 class OwnerMain extends React.Component {
 
   render() {
 
-    let currUser = JSON.parse(localStorage.getItem('currUser'));
-    var name = ""
-    if (currUser != null) {
-      name = currUser.firstName
+    // make sure user is logged in
+    var currUser = JSON.parse(localStorage.getItem('currUser'))
+    if(currUser == null) {
+        toastr.error("Please log in first");
+        browserHistory.push('/');
     }
     
    // alert(JSON.stringify(currUser));
@@ -25,7 +27,7 @@ class OwnerMain extends React.Component {
         <h1><center>Whistle!</center></h1>
        
       </div>
-      <h2><center>Welcome {name}! </center></h2>
+      <h2><center>Welcome {currUser.firstName}! </center></h2>
       <h2><center>When do you need a caretaker?</center></h2>
       <div className="ownerChoice">
            <center>

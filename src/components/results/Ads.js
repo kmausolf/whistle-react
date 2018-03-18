@@ -82,7 +82,7 @@ class Ads extends React.Component {
            careTakers[i] = this.getCopyOfUser(ct[i]);
            
           }
-          alert(JSON.stringify(careTakers));
+        //   alert(JSON.stringify(careTakers));
           for(let i = 0; i < careTakers.length; i++){
               careTakers[i].key = k++;
               careTakers[i].name = careTakers[i].firstName + " " + careTakers[i].lastName;
