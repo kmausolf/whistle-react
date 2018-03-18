@@ -22,11 +22,11 @@ const generateTreadId = () => {
 
 // check if both lists contain the same UNIQUE elements
 function listEqual(l1, l2) {
-    if(l1.length() != l2.length) {
+    if(l1.length != l2.length) {
         return false
     }
 
-    for(i = 0; i < l1.length(); i++) {
+    for(var i = 0; i < l1.length; i++) {
         if(l2.indexOf(l1[i]) == -1) {
             return false
         }
@@ -36,8 +36,8 @@ function listEqual(l1, l2) {
 
 // Return a list without duplicates
 function createUniqueList(l) {
-    newList = []
-    for(i = 0; i < l.length(); i++) {
+    var newList = []
+    for(var i = 0; i < l.length; i++) {
         if(newList.indexOf(l[i]) == -1) {
             newList.push(l[i])
         }
@@ -48,7 +48,7 @@ function createUniqueList(l) {
 // given a list of userid, return thread id if a thread with these users exist, -1 if not
 function findThread(usersList) {
     var usersListUnique = createUniqueList(usersList)
-    for(i = 0; i < Object.keys(threads).length; i++) {
+    for(var i = 0; i < Object.keys(threads).length; i++) {
         if (listEqual(usersListUnique, threads[i].users)) {
             return i
         }
@@ -56,9 +56,23 @@ function findThread(usersList) {
     return -1
 }
 
+function getThreadsByUserL(userID) {
+    var threadsArray = [];
+    for(var i = 0; i < Object.keys(threads).length; i++) {
+        if(threads[i].users.indexOf(userID) != -1) {
+            threadsArray.push({});
+            threadsArray[i].tid = threads[i].tid;
+            threadsArray[i].users = Object.assign([], threads[i].users);
+            threadsArray[i].messages = Object.assign([], threads[i].messages);
+        }
+    }
+    return threadsArray;
+}
+
 // Create a thread and sending a message
-function sendMessage(userList, senderID, message) {
-    var usersListUnique = userList.push(senderID);
+function sendMessageL(userList, senderID, message) {
+    var usersListUnique = userList
+    usersListUnique.push(senderID)
     usersListUnique = createUniqueList(usersListUnique);
 
     var tid = findThread(usersListUnique);
@@ -70,13 +84,12 @@ function sendMessage(userList, senderID, message) {
 
         newThread.tid = tid;
         newThread.users = usersListUniquel;
-        newThread,message = [];
+        newThread.message = [];
 
-        threads.push(newThread)
+        threads.push(newThread);
     }
 
     threads[tid].messages.unshift(messageApi.sendMessage(tid, senderID, message));
-    return tid;
 }
 
 class ThreadApi {
@@ -131,41 +144,32 @@ class ThreadApi {
     static sendMessage(usersIDList, senderID, message) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                var usersIDListUnique = usersIDList.push(senderID);
+                
+                var usersIDListUnique = usersIDList
+                usersIDListUnique.push(senderID);
                 usersIDListUnique = createUniqueList(usersIDListUnique);
 
-                if(usersIDListUnique.length() == 1) {
+                if(usersIDListUnique.length == 1) {
                     reject('createThread: there is only one user')
                 }
 
-                userApi.userIDExist(senderID).then(bool => {
-                    if(bool) {
-                        resolve(sendMessage(usersIDListUnique, senderID, message))
-                    }
-                    else {
-                        reject('createThread: sender does not exist')
-                    }
-                }).catch(error => {
-                    throw(error)
-                })
+
+                sendMessageL(usersIDListUnique, senderID, message)
+                resolve(getThreadsByUserL(senderID))
+
+                // userApi.userIDExist(senderID).then(bool => {
+                //     if(bool) {
+                //         sendMessage(usersIDListUnique, senderID, message)
+                //         resolve(getThreadsByUserL(senderID))
+                //     }
+                //     else {
+                //         reject('createThread: sender does not exist')
+                //     }
+                // }).catch(error => {
+                //     throw(error)
+                // })
 
                 
-            }, delay);
-        });
-    }
-
-    static userInThread(userID, tid) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if(tid < 0 || tid > generateTreadId) {
-                    reject('userInThread: thread does not exist');
-                }
-                else if (threads[tid].users.indexOf(userID) != -1) {
-                    resolve(true)
-                }
-                else {
-                    resolve(false)
-                }
             }, delay);
         });
     }

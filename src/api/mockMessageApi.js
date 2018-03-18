@@ -18,7 +18,7 @@ const messages = [
         read: false
     },
     {
-        id: 3,
+        id: 2,
         tid: 0,
         sender: 'hank-hill',
         message: 'hello back',
@@ -27,7 +27,7 @@ const messages = [
 ];
 
 const generateMessageId = () => {
-    return messages.length();
+    return Object.keys(messages).length;
 };
 
 
@@ -45,30 +45,18 @@ function createUniqueList(l) {
 class MessageApi {
 
     static sendMessage(tid, senderID, messageString) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // make sure sender is in thread
-                threadApi.userInThread(senderID, tid).then(bool => {
-                    if(!bool) {
-                        reject('sendMessage in message api: sender not in thread')
-                    }
-                }).catch(error => {
-                    throw(error)
-                })
-                var mid = generateMessageId()
+        var mid = generateMessageId()
 
-                message = {
-                    id: mid,
-                    tid: tid,
-                    sender: senderID,
-                    message: messageString,
-                    read: false,
-                }
+        var message = {
+            id: mid,
+            tid: tid,
+            sender: senderID,
+            message: messageString,
+            read: false,
+        }
 
-                messages.push(message)
-                resolve(mid)
-            },delay);
-        });
+        messages.push(message)
+        return mid
     }
 
     static getMessage(mid) {

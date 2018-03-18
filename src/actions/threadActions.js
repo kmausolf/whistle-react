@@ -1,5 +1,5 @@
-import * as types from './actionTypes';
 import threadApi from '../api/threadApi';
+import * as types from './actionTypes';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 export function getAllThreadsSuccess(threads) {
@@ -10,8 +10,8 @@ export function getThreadsByUserSuccess(threads) {
     return {type: types.GET_THREADS_BY_USER_SUCCESS, threads};
 }
 
-export function getLastMessageId(mid) {
-    return {type: types.GET_LAST_MESSAGE_ID_SUCCESS, mid};
+export function sendMessageSuccess(threads) {
+    return {type: types.SEND_MESSAGE_SUCCESS, threads};
 }
 
 export function getAllThreads(){
@@ -30,6 +30,17 @@ export function getThreadsByUser(userId){
         dispatch(beginAjaxCall());
         return threadApi.getThreadsByUser(userId).then(threads => {
             dispatch(getThreadsByUserSuccess(threads));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}
+
+export function sendMessage(usersIDList, senderID, message) {
+    return function(dispatch){
+        dispatch(beginAjaxCall());
+        return threadApi.sendMessage(usersIDList, senderID, message).then(threads => {
+            dispatch(sendMessageSuccess(threads));
         }).catch(error => {
             throw(error);
         });
