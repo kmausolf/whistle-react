@@ -28,9 +28,6 @@ export default function userReducer(state = initialState.users, action){
                 ...state.filter(user => user.id !== action.user.id),
                 Object.assign({}, action.user)
             ];
-
-        case types.GET_USER_SUCCESS:
-            return action.user;
         
         default:
             return state;

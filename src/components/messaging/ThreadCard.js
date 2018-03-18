@@ -5,7 +5,6 @@ class ThreadCard extends React.Component {
         super(props);
     }
 
-
     render() {
         const imgStyle = {
             borderRadius: "10px",
@@ -13,11 +12,22 @@ class ThreadCard extends React.Component {
             height: "100px",
             float:'left' 
         };
+
+        let currUser = JSON.parse(localStorage.getItem('currUser'));
+
+
         return (
             <div>
                 <div> <left>
-                    <p>User in this thread: </p>
-                    {console.log(this.props.thread)}
+                    <p>users in this Message Thread: </p>
+                    {/* {this.props.threads.map(thread =>
+                        <div key={thread.tid} style={cardStyle}>
+                            <ThreadCard 
+                                thread = {thread}
+                                actions = {this.props.actions}
+                            />
+                        </div>
+                    )} */}
                 </left> </div>
             </div>
         );

@@ -25,8 +25,8 @@ class ThreadApi {
                 for(var i = 0; i < Object.keys(threads).length; i++) {
                     threadsArray.push({});
                     threadsArray[i].tid = threads[i].tid;
-                    threadsArray[i].users = Object.assign({}, threads[i].users);
-                    threadsArray[i].messages = Object.assign({}, threads[i].messages);
+                    threadsArray[i].users = Object.assign([], threads[i].users);
+                    threadsArray[i].messages = Object.assign([], threads[i].messages);
                 }
                 resolve(threadsArray);
             }, delay);
