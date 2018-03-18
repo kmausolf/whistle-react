@@ -6,6 +6,7 @@ import Register from './components/register/Register';
 import OwnerMain from './components/ownermain/OwnerMain';
 import CtMain from './components/ctmain/CtMain';
 import Messaging from './components/messaging/Messaging';
+import Thread from './components/thread/Thread';
 import Settings from './components/settings/Settings';
 import OwnerProfile from './components/ownerprofile/OwnerProfile';
 import CaretakerProfile from './components/ctprofile/CaretakerProfile';
@@ -20,6 +21,7 @@ export default (
     <Route path="ownermain" component={OwnerMain} />
     <Route path="ctmain" component={CtMain} />
     <Route path="messaging" component={Messaging} />
+    <Route path="thread" component={Thread} />
     <Route path="settings" component={Settings} />
     <Route path="ownerprofile" component={OwnerProfile} />
     <Route path="ctprofile" component={CaretakerProfile} />

@@ -117,6 +117,20 @@ class UserApi {
         });
     }
 
+    static userIDExist(id) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                for(var i = 0; i < Object.keys(users).length; i++) {
+                    if(users[i].id == id) {
+                        resolve(true);
+                        return;
+                    }
+                }
+                resolve(false);
+            }, delay);
+        });
+    }
+
     static validateUser(user){
         return new Promise((resolve, reject) => {
             const userToSearchFor = users.filter(usr => usr.email == user.email); //makes a shallow copy. Cannot ref userToSearchFor.pass

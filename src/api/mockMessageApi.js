@@ -1,5 +1,7 @@
 import delay from './delay';
 
+import threadApi from './threadApi';
+
 const messages = [
     {
         id: 0,
@@ -28,19 +30,6 @@ const generateMessageId = () => {
     return messages.length();
 };
 
-// check if both lists contain the same UNIQUE elements
-function listEqual(l1, l2) {
-    if(l1.length() != l2.length) {
-        return false
-    }
-
-    for(i = 0; i < l1.length(); i++) {
-        if(l2.indexOf(l1[i]) == -1) {
-            return false
-        }
-    }
-    return true
-}
 
 // Return a list without duplicates
 function createUniqueList(l) {
@@ -53,45 +42,20 @@ function createUniqueList(l) {
     return newList;
 }
 
-// Get the threadID of the thread with the given users
-function findThread(usersList) {
-    usersListUnique = createUniqueList(usersList)
-    for(i = 0; i < threads.length(); i++) {
-        if (listEqual(usersListUnique, threads[i].users)) {
-            return i
-        }
-    }
-    return -1
-}
-
 class MessageApi {
 
-    static sendMessage(tid, usersList, senderID, messageString) {
+    static sendMessage(tid, senderID, messageString) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                // no thread is given
-                if(tid < 0) {
-                    // check if there is already a thread with given usersList
-                    usersListUnique = createUniqueList(usersList)
-                    tid = findThread(usersListUnique)
-                    if(tid == -1) {
-                        // create a new thread
-                        tid = generateTreadId()
-                        thread = {
-                            tid: tid,
-                            users: usersListUnique,
-                            messages: []
-                        }
-                        threads.push(thread)
-                    }
-                }
-
                 // make sure sender is in thread
-                if(threads[tid].users.indexOf(senderID) == -1) {
-                    reject('Message sender is not in the message thread.')
-                }
-
-                mid = generateMessageId()
+                threadApi.userInThread(senderID, tid).then(bool => {
+                    if(!bool) {
+                        reject('sendMessage in message api: sender not in thread')
+                    }
+                }).catch(error => {
+                    throw(error)
+                })
+                var mid = generateMessageId()
 
                 message = {
                     id: mid,
@@ -102,19 +66,7 @@ class MessageApi {
                 }
 
                 messages.push(message)
-                threads[tid].messages.unshift(mid)
-                resolve(message)
-            },delay);
-        });
-    }
-
-    static getMessagesIdList(tid) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if(tid < 0 || tid >= threads.length()) {
-                    reject('Thread requested does not exist.')
-                }
-                resolve(threads[tid].messages)
+                resolve(mid)
             },delay);
         });
     }
@@ -122,7 +74,7 @@ class MessageApi {
     static getMessage(mid) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                if(mid < 0 || mid >= messages.length()) {
+                if(mid < 0 || mid >= Object.keys(messages).length) {
                     reject('Message requested does not exist.')
                 }
                 resolve(messages[mid])

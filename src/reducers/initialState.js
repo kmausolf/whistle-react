@@ -3,5 +3,6 @@ export default {
   courses: [],
   users: [],
   thread: [],
+  message: [],
   ajaxCallsInProgress: 0
 };

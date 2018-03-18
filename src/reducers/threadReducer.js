@@ -8,6 +8,7 @@ export default function threadReducer(state = initialState.thread, action){
 
         case types.GET_THREADS_BY_USER_SUCCESS:
             return action.threads
+
         
         default:
             return state;
