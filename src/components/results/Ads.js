@@ -80,7 +80,11 @@ class Ads extends React.Component {
             borderRadius: '5px'
           };
 
-          //alert(this.props);
+          
+          const users = this.props.users;
+         
+          const careTakers = users.filter(usr => usr.isOwner === false);
+          alert(JSON.stringify(careTakers));
         return(
             <div>
             <form>
@@ -100,7 +104,7 @@ class Ads extends React.Component {
 
 
 function mapStateToProps(state, ownProps) {
-    alert(state.users);
+    //alert("mapState to props: "+JSON.stringify(state.users));
     return{
         users: state.users
     };
