@@ -54,7 +54,7 @@ class MessageCard extends React.Component {
             </div>
         );
 
-        if(this.props.side%2 == 1) {
+        if(this.state.userName == "You") {
             return (
                 <div>
                     {code}
@@ -77,7 +77,6 @@ class MessageCard extends React.Component {
 
 MessageCard.propTypes = {
     mid: PropTypes.number.isRequired,
-    side: PropTypes.number.isRequired,
     actions: PropTypes.object.isRequired
 };
 

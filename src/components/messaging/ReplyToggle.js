@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
+import toastr from 'toastr';
 // import {connect} from 'react-redux';
 // import { bindActionCreators } from 'redux';
 
@@ -25,10 +26,15 @@ class ReplyToggle extends React.Component {
         var senderID = JSON.parse(localStorage.getItem('currUser')).id
         var message = this.state.replyMessage
         this.props.actions.sendMessage(userIDList, senderID, message)
+        .then(() => this.props.update())
+        .catch(error => {
+            toastr.error(error);
+        }); 
         this.setState({
             showing: false,
             replyMessage: ""
         });
+        
     }
 
     handleReplyChange(event) {
@@ -62,7 +68,8 @@ class ReplyToggle extends React.Component {
 
 ReplyToggle.propTypes = {
     thread: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    update: PropTypes.func.isRequired
 };
 
 // function mapStateToProps(state, ownProps) {

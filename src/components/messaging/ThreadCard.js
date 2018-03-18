@@ -16,6 +16,7 @@ class ThreadCard extends React.Component {
 
         this.loadUserNames(this.props.thread.users);
         this.getLastMessage = this.getLastMessage.bind(this);
+        this.getLastMessage();
     }
 
     loadUserNames(userIDs) {
@@ -57,9 +58,8 @@ class ThreadCard extends React.Component {
                 <left>
                     <p>From:
                     {this.state.userNames.map(name =>
-                        <nobr> {name} | </nobr>
+                        <nobr> {name} </nobr>
                     )}</p>
-                    {this.getLastMessage()}
                     <p>Last Message: {this.state.lastMessage}</p>
                     
                 </left>
@@ -67,13 +67,13 @@ class ThreadCard extends React.Component {
                 <ReplyToggle
                     thread = {this.props.thread}
                     actions = {this.props.actions}
+                    update = {() => this.getLastMessage()}
                 />
 
                 <Link to={{
                     pathname: '/thread',
                     state: {
-                        thread: this.props.thread,
-                        actions: this.props.actions
+                        threadID: this.props.thread.tid,
                     }
                     }}>
                     <button>See Full Message Thread</button>
