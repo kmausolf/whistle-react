@@ -1,11 +1,9 @@
 import React, {PropTypes} from 'react';
-
+import { Link } from 'react-router';
 import userApi from '../../api/mockUserApi';
 import threadApi from '../../api/threadApi';
 import messageApi from '../../api/mockMessageApi';
 import ReplyToggle from './ReplyToggle';
-
-var name = ""
 
 class ThreadCard extends React.Component {
     constructor(props) {
@@ -70,6 +68,16 @@ class ThreadCard extends React.Component {
                     thread = {this.props.thread}
                     actions = {this.props.actions}
                 />
+
+                <Link to={{
+                    pathname: '/thread',
+                    state: {
+                        thread: this.props.thread,
+                        actions: this.props.actions
+                    }
+                    }}>
+                    <button>See Full Message Thread</button>
+                </Link>
                 </center>
             </div>
         );
