@@ -56,6 +56,10 @@ function findThread(usersList) {
     return -1
 }
 
+function sortThreadByNewestMessage(thread) {
+
+}
+
 function getThreadsByUserL(userID) {
     var threadsArray = [];
     var num = 0;
