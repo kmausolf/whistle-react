@@ -147,7 +147,7 @@ class UserApi {
             }
         },delay);
     }
-    
+
 
     //updates a user's properties
     static updateUser(updated_user){
@@ -156,16 +156,16 @@ class UserApi {
             setTimeout(() => {
                
                 for(var i = 0; i < Object.keys(users).length; i++) {
-                    if(users[i].id == id) {
+                    if(users[i].id == updated_user.id) {
                         users[i] = updated_user; //replace the old version of the user with the new one. Should push pointer to original
                         break;
                     }
                 }
-                if(user == {}) {
+                if(updated_user == {}) {
                     reject('User does not exist');
                 }
                 else {
-                    
+                     
                     resolve(updated_user);
                 }
             }, delay);

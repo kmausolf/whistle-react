@@ -11,6 +11,7 @@ class CaretakerProfile extends React.Component {
     
 
     this.changeProfilePic = this.changeProfilePic.bind(this);
+    this.updateUser = this.updateUser.bind(this);
     this.currUser = JSON.parse(localStorage.getItem('currUser'));
    
     this.state = { pic: this.currUser.avatar_url};
@@ -19,16 +20,26 @@ class CaretakerProfile extends React.Component {
 
   loadProfileInfo() {
     
+  }
 
+  updateUser() {
+    this.props.actions.updateUser(this.currUser)
+    .catch(error => {
+      toastr.error(error);
+    });
+    localStorage.setItem('currUser', JSON.stringify(this.currUser));
   }
 
   changeProfilePic() {
     var picLink = prompt("Please enter the URL for your picture", "");
-   
+    this.currUser.avatar_url = this.state.pic;
     this.setState((prevState) => ({
      pic:picLink
   
     }));
+    this.updateUser();
+    
+    
   }
   
 

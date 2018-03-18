@@ -17,7 +17,7 @@ const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
 store.dispatch(loadUsers());
-
+localStorage.clear();
 render(
   <Provider store={store}>
     <Router history={browserHistory} routes={routes} />

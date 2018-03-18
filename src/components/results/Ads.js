@@ -82,15 +82,16 @@ class Ads extends React.Component {
 
           
           const users = this.props.users;
-          
+          alert(JSON.stringify(users));
           let k = 0;
-          let careTakers = users.filter(usr => usr.isOwner === false);
+          /*
+          let careTakers = users.filter(usr => usr.isOwner === false); //err could be from a shallow copy in here
           for(let i = 0; i < careTakers.length; i++){
               careTakers[i].key = k++;
               careTakers[i].name = careTakers[i].firstName + " " + careTakers[i].lastName;
           }
           
-          this.setState( { cards: careTakers});
+          this.setState( { cards: careTakers});*/
           //alert(JSON.stringify(this.state.cards));
         return(
             <div>
