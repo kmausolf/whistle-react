@@ -74,6 +74,8 @@ function getCopyOfUser(user) {
     newUser.pass = user.pass;
     newUser.isOwner = user.isOwner;
     newUser.threads = Object.assign({}, user.threads);
+
+    return newUser;
 }
 
 class UserApi {
@@ -99,6 +101,7 @@ class UserApi {
                     reject('User does not exist');
                 }
                 else {
+                    
                     resolve(user);
                 }
             }, delay);
