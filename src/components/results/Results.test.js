@@ -31,6 +31,7 @@ describe('Testing Results_Walker/Sitter', () => {
       expect(wrapper.find('Ads')).toExist();
   });
 });
+/*
 describe('Testing Ads', () => {
  
     it('Do we have a search bar and button?', () => {
@@ -50,4 +51,4 @@ describe('Testing Card', () => {
         expect(wrapper.find('h2').length).toBe(1);
         expect(wrapper.find('p').length).toBe(1);  //are all attributes printed?
       });
-});
+}); */

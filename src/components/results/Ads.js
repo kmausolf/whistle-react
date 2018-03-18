@@ -1,6 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router';
 import CardList from './CardList';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as userActions from '../../actions/userActions';
+import toastr from 'toastr';
+
 class Ads extends React.Component {
 
     constructor(props){
@@ -74,6 +79,19 @@ class Ads extends React.Component {
             float: "right",
             borderRadius: '5px'
           };
+
+          
+          const users = this.props.users;
+          
+          let k = 0;
+          let careTakers = users.filter(usr => usr.isOwner === false);
+          for(let i = 0; i < careTakers.length; i++){
+              careTakers[i].key = k++;
+              careTakers[i].name = careTakers[i].firstName + " " + careTakers[i].lastName;
+          }
+          
+          this.setState( { cards: careTakers});
+          //alert(JSON.stringify(this.state.cards));
         return(
             <div>
             <form>
@@ -91,4 +109,18 @@ class Ads extends React.Component {
     }
 }
 
-export default Ads;
+
+function mapStateToProps(state, ownProps) {
+    //alert("mapState to props: "+JSON.stringify(state.users));
+    return{
+        users: state.users
+    };
+  }
+  
+  function mapDispatchToProps(dispatch){
+    return{
+        actions: bindActionCreators(userActions, dispatch)
+    };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Ads);
