@@ -34,6 +34,7 @@ class MessageList extends React.Component {
         this.setState({
             replyMessage: ""
         });
+        toastr.success("Message Send!")
         
     }
 

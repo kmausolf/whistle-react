@@ -34,6 +34,7 @@ class ReplyToggle extends React.Component {
             showing: false,
             replyMessage: ""
         });
+        toastr.success("Message Send!")
         
     }
 

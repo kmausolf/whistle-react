@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as threadActions from '../../actions/threadActions';
+import toastr from 'toastr';
 
 
 //will have an on and off state.
@@ -31,7 +32,7 @@ class ContactToggle extends React.Component {
         console.log(userIDList)
         var message = this.state.replyMessage
         this.props.actions.sendMessage(userIDList, senderID, message)
-        .then(() => this.props.update())
+        .then(() => toastr.success("Message Sent!"))
         .catch(error => {
             toastr.error(error);
         }); 
