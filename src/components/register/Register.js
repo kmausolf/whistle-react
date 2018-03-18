@@ -90,11 +90,13 @@ constructor(props){
           return;
       }
 
+      console.log(this.props)
       this.props.actions.saveUser(this.state.user)
       .then(() => this.redirect())
       .catch(error => {
         toastr.error(error);
       });
+      console.log(this.props)
 
   }
 

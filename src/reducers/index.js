@@ -12,7 +12,6 @@ const rootReducer = combineReducers({
   authors,
   users,
   thread,
-  message,
   ajaxCallsInProgress
 });
 

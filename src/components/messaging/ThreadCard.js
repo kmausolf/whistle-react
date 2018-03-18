@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react';
 import userApi from '../../api/mockUserApi';
 import threadApi from '../../api/threadApi';
 import messageApi from '../../api/mockMessageApi';
+import ReplyToggle from './ReplyToggle';
 
 var name = ""
 
@@ -16,7 +17,7 @@ class ThreadCard extends React.Component {
         }
 
         this.loadUserNames(this.props.thread.users);
-        this.getLastMessage();
+        this.getLastMessage = this.getLastMessage.bind(this);
     }
 
     loadUserNames(userIDs) {
@@ -37,16 +38,12 @@ class ThreadCard extends React.Component {
     }
 
     getLastMessage() {
-        threadApi.getLastMessageId(this.props.thread.tid).then( mid => {
-            messageApi.getMessage(mid).then( message => {
-                this.setState({lastMessage: message.message})
-            }).catch(error => {
-                throw(error);
-            })
+        var mid = this.props.thread.messages[0]
+        messageApi.getMessage(mid).then( message => {
+            this.setState({lastMessage: message.message})
         }).catch(error => {
             throw(error);
         })
-        
     }
 
     render() {
@@ -64,11 +61,15 @@ class ThreadCard extends React.Component {
                     {this.state.userNames.map(name =>
                         <nobr> {name} | </nobr>
                     )}</p>
+                    {this.getLastMessage()}
                     <p>Last Message: {this.state.lastMessage}</p>
                     
                 </left>
                 <center>
-                    <button className="quickReply" >Quick Reply</button>
+                <ReplyToggle
+                    thread = {this.props.thread}
+                    actions = {this.props.actions}
+                />
                 </center>
             </div>
         );
