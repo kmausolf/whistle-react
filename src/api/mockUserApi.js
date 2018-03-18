@@ -170,6 +170,8 @@ class UserApi {
                 else{
                     //Otherwise create the user
                     user.id = generateId(user);
+                    user.avatar_url = 'https://i.imgur.com/jNNT4LE.png';
+                    user.title = "";
                     users.push(user);
                 }
                 
